@@ -1,0 +1,23 @@
+{
+    "name": "wordle-game",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "dependencies": {
+        "concurrently": "^7.0.0",
+        "express": "^4.17.3"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    },
+    "scripts": {
+        "server": "nodemon ./server/server.js",
+        "client": "cd client && npm start",
+        "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
