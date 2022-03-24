@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
+import Wordle from "./components/pages/Wordle";
 import {
   Typography,
   Box,
@@ -7,8 +8,15 @@ import {
   FormControl,
   Select,
   InputLabel,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormLabel,
+  Button,
 } from "@mui/material";
-function App() {
+import { Link, useLocation } from "react-router-dom";
+
+const App = () => {
   const callApi = async () => {
     const response = await fetch("/highscore");
     const body = await response.json();
@@ -19,10 +27,20 @@ function App() {
   }, []);
 
   const [wordLimit, setWordLimit] = useState("");
-
+  const [wordType, setWordType] = useState("repeating");
   const handleChange = (e) => {
     setWordLimit(e.target.value);
-    console.log(e.target.value, "target");
+  };
+
+  const onChangeWordType = (e) => {
+    setWordType(e.target.value);
+  };
+
+  const checkValues = (e) => {
+    if (!wordLimit) {
+      e.preventDefault();
+      alert("Set word limit for playing!");
+    }
   };
 
   return (
@@ -50,7 +68,7 @@ function App() {
       <Box
         sx={{
           minWidth: 300,
-          m: "20px auto",
+          m: "20px auto 160px auto",
           width: "200px",
         }}
       >
@@ -69,8 +87,55 @@ function App() {
           </Select>
         </FormControl>
       </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "20px",
+        }}
+      >
+        <FormControl sx={{ textAlign: "center" }}>
+          <FormLabel sx={{ m: 2 }} id="wordType">
+            Word type
+          </FormLabel>
+          <RadioGroup
+            aria-labelledby="wordType"
+            value={wordType}
+            onChange={onChangeWordType}
+            name="repeating"
+          >
+            <FormControlLabel
+              sx={{ m: 1 }}
+              value="repeating"
+              control={<Radio color="secondary" />}
+              label="Repeating characters (e.g.HELLO)"
+            />
+            <FormControlLabel
+              sx={{ m: 1 }}
+              value="unique"
+              control={<Radio color="secondary" />}
+              label="Unique characters only (e.g.CURLY)"
+            />
+          </RadioGroup>
+        </FormControl>
+      </Box>
+      <Link
+        to="/Wordle"
+        onClick={checkValues}
+        state={{ wordLimit: wordLimit, wordType: wordType }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "20px",
+          }}
+        >
+          <Button variant="contained">PLAY WORDLE!</Button>
+        </Box>
+      </Link>
     </>
   );
-}
+};
 
 export default App;

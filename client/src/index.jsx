@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import Info from "./components/pages/Info";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Wordle from "./components/pages/Wordle";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import NavbarMUI from "./components/UI/NavbarMUI";
 import { createTheme, ThemeProvider } from "@mui/material";
 
@@ -19,10 +20,12 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
+        {/* {useCheckingPath() ? null : <NavbarMUI />} */}
         <NavbarMUI />
         <Routes>
           <Route exact path="/" element={<App />} />
           <Route exact path="/info" element={<Info />} />
+          <Route exact path="/wordle" element={<Wordle />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
