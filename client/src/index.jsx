@@ -2,10 +2,30 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import Info from "./components/pages/Info";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NavbarMUI from "./components/UI/NavbarMUI";
+import { createTheme, ThemeProvider } from "@mui/material";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#6d4c41",
+    },
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <NavbarMUI />
+        <Routes>
+          <Route exact path="/" element={<App />} />
+          <Route exact path="/info" element={<Info />} />
+        </Routes>
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
