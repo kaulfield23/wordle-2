@@ -1,8 +1,8 @@
 import express from 'express';
-import test from './router/test.js'
+import highscore from './router/highscore.js'
 const app = express();
 
-app.use('/api', test);
+app.use('/highscore', highscore);
 
 const port = process.env.PORT || 5080;
 
