@@ -27,7 +27,7 @@ const DrawerMUI = () => {
             return (
               <ListItemButton onClick={() => setOpenDrawer(false)} key={index}>
                 <ListItemIcon>
-                  <Link to={`/${newPath}`}>
+                  <Link to={`${newPath === "game" ? "/" : `/${newPath}`}`}>
                     <ListItemText
                       primaryTypographyProps={{
                         color: "primary",

@@ -17,15 +17,6 @@ import {
 import { Link, useLocation } from "react-router-dom";
 
 const App = () => {
-  const callApi = async () => {
-    const response = await fetch("/highscore");
-    const body = await response.json();
-    console.log(body, "hellooooo");
-  };
-  useEffect(() => {
-    callApi();
-  }, []);
-
   const [wordLimit, setWordLimit] = useState("");
   const [wordType, setWordType] = useState("repeating");
   const handleChange = (e) => {

@@ -1,6 +1,66 @@
+import { Box } from "@mui/system";
 import React from "react";
 
 const Info = () => {
-  return <h1>info</h1>;
+  return (
+    <>
+      <Box sx={{ marginTop: 5, textAlign: "center" }}>
+        <h1>🧁wordle rules</h1>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          marginTop: 10,
+          justifyContent: "center",
+        }}
+      >
+        <h2>Correct word : </h2>
+        <Box
+          sx={{
+            width: "35px",
+            height: "35x",
+            backgroundColor: "green",
+            marginLeft: "8px",
+            borderRadius: "12px",
+          }}
+        ></Box>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          m: 2,
+        }}
+      >
+        <h2>Misplaced word : </h2>
+        <Box
+          sx={{
+            width: "35px",
+            height: "35x",
+            backgroundColor: "green",
+            marginLeft: "8px",
+            borderRadius: "12px",
+          }}
+        ></Box>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <h2>Incorrect word : </h2>
+        <Box
+          sx={{
+            width: "35px",
+            height: "35x",
+            backgroundColor: "green",
+            marginLeft: "8px",
+            borderRadius: "12px",
+          }}
+        ></Box>
+      </Box>
+    </>
+  );
 };
 export default Info;

@@ -4,9 +4,10 @@ import "./index.css";
 import App from "./App";
 import Info from "./components/pages/Info";
 import Wordle from "./components/pages/Wordle";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavbarMUI from "./components/UI/NavbarMUI";
 import { createTheme, ThemeProvider } from "@mui/material";
+import Highscore from "./components/pages/Highscore";
 
 const theme = createTheme({
   palette: {
@@ -22,11 +23,14 @@ ReactDOM.render(
       <ThemeProvider theme={theme}>
         {/* {useCheckingPath() ? null : <NavbarMUI />} */}
         <NavbarMUI />
-        <Routes>
-          <Route exact path="/" element={<App />} />
-          <Route exact path="/info" element={<Info />} />
-          <Route exact path="/wordle" element={<Wordle />} />
-        </Routes>
+        <div id="main">
+          <Routes>
+            <Route exact path="/" element={<App />} />
+            <Route exact path="/info" element={<Info />} />
+            <Route exact path="/highscore" element={<Highscore />} />
+            <Route exact path="/wordle" element={<Wordle />} />
+          </Routes>
+        </div>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,
