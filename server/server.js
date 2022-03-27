@@ -1,8 +1,9 @@
 import express from 'express';
-import highscore from './router/highscore.js'
+import api from './router/api.js'
 const app = express();
 
-app.use('/highscore', highscore);
+
+app.use('/api', api);
 
 const port = process.env.PORT || 5080;
 

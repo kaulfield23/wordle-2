@@ -19,7 +19,7 @@ const Info = () => {
           sx={{
             width: "35px",
             height: "35x",
-            backgroundColor: "green",
+            backgroundColor: "#65c2a6",
             marginLeft: "8px",
             borderRadius: "12px",
           }}
@@ -37,7 +37,7 @@ const Info = () => {
           sx={{
             width: "35px",
             height: "35x",
-            backgroundColor: "green",
+            backgroundColor: "#f8d486",
             marginLeft: "8px",
             borderRadius: "12px",
           }}
@@ -54,7 +54,7 @@ const Info = () => {
           sx={{
             width: "35px",
             height: "35x",
-            backgroundColor: "green",
+            backgroundColor: "#f88e86",
             marginLeft: "8px",
             borderRadius: "12px",
           }}
