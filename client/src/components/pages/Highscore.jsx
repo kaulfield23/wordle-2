@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 
 const Highscore = () => {
-  const callApi = async () => {
+  const getHighScore = async () => {
     const response = await fetch("/api/highscore");
     const body = await response.json();
     console.log(body, "hellooooo");
   };
   useEffect(() => {
-    callApi();
+    getHighScore();
   }, []);
   return <>body</>;
 };
