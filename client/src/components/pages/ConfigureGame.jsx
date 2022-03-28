@@ -12,6 +12,8 @@ import {
   FormLabel,
   Button,
 } from "@mui/material";
+import { CustomText } from "../UI/CustomText";
+
 const ConfigureGame = (props) => {
   const [wordLimit, setWordLimit] = useState("");
   const [wordType, setWordType] = useState("repeating");
@@ -56,7 +58,7 @@ const ConfigureGame = (props) => {
       <Box
         sx={{
           minWidth: 300,
-          m: "20px auto 160px auto",
+          m: "20px auto 100px auto",
           width: "200px",
         }}
       >
@@ -107,23 +109,18 @@ const ConfigureGame = (props) => {
           </RadioGroup>
         </FormControl>
       </Box>
-      {/* <Link
-        to="/Wordle"
-        onClick={checkValues}
-        state={{ wordLimit: wordLimit, wordType: wordType }}
-      > */}
+
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
-          marginBottom: "20px",
+          paddingBottom: "30px",
         }}
       >
         <Button variant="contained" onClick={checkValues}>
-          PLAY WORDLE!
+          <CustomText>PLAY WORDLE!</CustomText>
         </Button>
       </Box>
-      {/* </Link> */}
     </>
   );
 };

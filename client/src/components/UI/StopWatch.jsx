@@ -2,18 +2,13 @@ import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 
-const StopWatch = () => {
+const StopWatch = ({ isPlaying }) => {
   const [timer, setTimer] = useState(0);
   const [sixty, setSixty] = useState(0);
-  const [startTimer, setStartTimer] = useState(true);
-
-  const onClickTimer = () => {
-    setStartTimer(false);
-  };
 
   useEffect(() => {
     let interval;
-    if (startTimer) {
+    if (isPlaying) {
       interval = setInterval(() => {
         setTimer((prev) => prev + 1);
       }, 1000);
@@ -23,9 +18,10 @@ const StopWatch = () => {
     return () => {
       clearInterval(interval);
     };
-  }, [startTimer]);
+  }, [isPlaying]);
 
   let count = timer % 10;
+
   useEffect(() => {
     if (timer % 10 === 0 && timer !== 0) {
       setSixty(sixty + 1);
@@ -50,9 +46,6 @@ const StopWatch = () => {
           {Math.floor((timer / 60) % 60)} min {sixty}
           {("0" + (timer % 10)).slice(1)} sec
         </p>
-        <Button variant="contained" onClick={onClickTimer}>
-          Try a new word
-        </Button>
       </Box>
     </>
   );

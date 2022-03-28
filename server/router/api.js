@@ -1,17 +1,34 @@
 import express from 'express';
-// import fs from 'fs/promises';
-// import path from 'path'
 import fetchWords from './wordlists.js';
 import chooseWord from './functions/chooseWord.js';
+import {
+    v4
+} from 'uuid';
+
 const router = express.Router();
 
-router.get('/word', async(req, res) => {
+const GAMES = [];
+// router.post('/userId', async(req, res) => {
+//     res.status(201).json({
+//         id: v4()
+//     })
+// })
+
+router.post('/games', async(req, res) => {
     const wordLength = parseInt(req.query.wordlength);
     const wordType = req.query.type;
     const words = await fetchWords();
     const filteredWord = chooseWord(words, wordLength, wordType)
-
-    res.json(filteredWord)
+    const game = {
+        correctWord: filteredWord,
+        guesses: [],
+        id: v4(),
+    }
+    GAMES.push(game)
+    console.log(filteredWord, game.id, 'userId')
+    res.status(201).json({
+        id: game.id
+    })
 })
 
 router.get('/highscore', (req, res) => {

@@ -18,7 +18,6 @@ const chooseWord = (input, numberOfWord, indication) => {
                 return true;
             }
         });
-    console.log(filteredWordList, 'haeju')
     let output =
         filteredWordList.length === 0 ?
         `There is no matching word for it` :
