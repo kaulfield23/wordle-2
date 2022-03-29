@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Grow, Zoom } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import StopWatch from "../UI/StopWatch";
@@ -16,6 +16,7 @@ const Wordle = ({ wordTypeForGame }) => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [notFinished, setNotFinished] = useState(true);
   const [boxes, setBoxes] = useState([]);
+  const [checked, setChecked] = useState(true);
 
   const getId = async () => {
     const response = await fetch(
@@ -26,6 +27,7 @@ const Wordle = ({ wordTypeForGame }) => {
     );
     const body = await response.json();
     setId(body.id);
+    setChecked((prev) => !prev);
   };
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const Wordle = ({ wordTypeForGame }) => {
   useEffect(() => {
     generateBoxes();
     checkCorect();
-    // console.log(notFinished, "notFInished");
+    setChecked(!checked);
   }, [result]);
 
   const checkCorect = () => {};
@@ -59,18 +61,20 @@ const Wordle = ({ wordTypeForGame }) => {
         setNotFinished(false);
         console.log(notFinished);
       }
-
+      setChecked(!checked);
       setResult(body);
     }
   };
-
+  console.log(checked, "checked");
   const giveUp = () => {
     setIsPlaying(false);
   };
 
   const setFirstBox = () => {
     let generateBoxes = Array(wordTypeForGame[0]).fill("@");
-    return generateBoxes.map((item, idx) => <CustomBox key={idx} />);
+    return generateBoxes.map((item, idx) => (
+      <CustomBox key={idx} className="guessBox" />
+    ));
   };
   const giveColors = (item) => {
     if (item.result === "Correct") {
@@ -91,7 +95,7 @@ const Wordle = ({ wordTypeForGame }) => {
       );
     } else {
       return (
-        <CustomBox>
+        <CustomBox sx={{ backgroundColor: "#ec8585" }}>
           <Box sx={{ position: "relative", top: "30%" }}>
             <CustomText>{item.letter}</CustomText>
           </Box>
@@ -127,16 +131,19 @@ const Wordle = ({ wordTypeForGame }) => {
                   textAlign: "center",
                 }}
               >
-                {!result && (
-                  <Box sx={{ display: "flex", flexDirection: "row" }}>
-                    {setFirstBox()}
-                  </Box>
-                )}
                 {boxes &&
                   boxes.map((item) => (
                     <Box sx={{ display: "flex" }}>{item}</Box>
                   ))}
+                {checked && (
+                  <Zoom in={checked}>
+                    <Box sx={{ display: "flex", flexDirection: "row" }}>
+                      {setFirstBox()}
+                    </Box>
+                  </Zoom>
+                )}
               </Box>
+
               <Box
                 component="form"
                 sx={{
@@ -176,7 +183,7 @@ const Wordle = ({ wordTypeForGame }) => {
                   onClick={giveUp}
                   color="secondary"
                 >
-                  <CustomText>I give up😢</CustomText>
+                  <CustomText>I give up🤪</CustomText>
                 </Button>
               </Box>
             </>
@@ -192,6 +199,7 @@ const Wordle = ({ wordTypeForGame }) => {
                   justifyContent: "center",
                   textAlign: "center",
                 }}
+                className="correctBox"
               >
                 {result.map((item) => giveColors(item))}
               </Box>

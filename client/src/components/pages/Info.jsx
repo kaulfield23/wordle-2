@@ -54,7 +54,7 @@ const Info = () => {
           sx={{
             width: "35px",
             height: "35x",
-            backgroundColor: "#b9b7b6",
+            backgroundColor: "#ec8585",
             marginLeft: "8px",
             borderRadius: "12px",
           }}

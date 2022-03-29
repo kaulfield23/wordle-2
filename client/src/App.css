@@ -8,10 +8,24 @@
 
 body {
     height: 100vh;
+    /* color: #ec8585; */
 }
 
 h1,
 h2,
 h3 {
     color: #6d4c41;
+}
+
+.correctBox {
+    animation: fadein 2s ease-in;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
