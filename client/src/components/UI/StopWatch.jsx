@@ -1,8 +1,7 @@
-import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 
-const StopWatch = ({ isPlaying }) => {
+const StopWatch = ({ isPlaying, catchTime }) => {
   const [timer, setTimer] = useState(0);
   const [sixty, setSixty] = useState(0);
 
@@ -14,6 +13,7 @@ const StopWatch = ({ isPlaying }) => {
       }, 1000);
     } else {
       clearInterval(interval);
+      catchTime(sixty);
     }
     return () => {
       clearInterval(interval);

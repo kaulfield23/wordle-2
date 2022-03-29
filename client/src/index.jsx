@@ -24,7 +24,6 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        {/* {useCheckingPath() ? null : <NavbarMUI />} */}
         <NavbarMUI />
         <div id="main">
           <Routes>

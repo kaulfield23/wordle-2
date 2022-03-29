@@ -1,18 +1,14 @@
 import express from 'express';
 import fetchWords from './wordlists.js';
-import chooseWord from './functions/chooseWord.js';
+import chooseWord from '../functions/chooseWord.js';
 import {
     v4
 } from 'uuid';
+import verifyWord from '../functions/verifyWord.js';
 
 const router = express.Router();
 
 const GAMES = [];
-// router.post('/userId', async(req, res) => {
-//     res.status(201).json({
-//         id: v4()
-//     })
-// })
 
 router.post('/games', async(req, res) => {
     const wordLength = parseInt(req.query.wordlength);
@@ -25,12 +21,25 @@ router.post('/games', async(req, res) => {
         id: v4(),
     }
     GAMES.push(game)
-    console.log(filteredWord, game.id, 'userId')
     res.status(201).json({
         id: game.id
     })
 })
 
+router.post('/games/:userId/guess', async(req, res) => {
+    let result;
+    let usersGuess = req.body.guessWord;
+    const isPlaying = GAMES.find((savedOne) => savedOne.id === req.params.userId)
+    if (isPlaying) {
+        result = verifyWord(usersGuess, isPlaying.correctWord)
+        isPlaying.guesses.push(usersGuess)
+        res.status(201).json(result)
+    } else {
+        res.status(404).end();
+    }
+    console.log(isPlaying.correctWord, 'correct word')
+    console.log(GAMES, 'GAME')
+})
 router.get('/highscore', (req, res) => {
     // const htmlBuf = await fs.readFile('../../client/src/components/pages/Highscore.jsx');
     // const htmlText = htmlBuf.toString().replace('%body%', 'hello')

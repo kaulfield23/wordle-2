@@ -12,7 +12,7 @@ import {
   FormLabel,
   Button,
 } from "@mui/material";
-import { CustomText } from "../UI/CustomText";
+import { CustomText } from "../UI/customMUI/CustomText";
 
 const ConfigureGame = (props) => {
   const [wordLimit, setWordLimit] = useState("");
