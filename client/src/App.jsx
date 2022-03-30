@@ -14,7 +14,7 @@ const App = () => {
   return (
     <>
       {isReadyToPlay ? (
-        <Wordle wordTypeForGame={wordTypeForGame} />
+        <Wordle word={wordTypeForGame} />
       ) : (
         <ConfigureGame wordType={checkWordType} />
       )}

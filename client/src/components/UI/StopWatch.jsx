@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 const StopWatch = ({ isPlaying, catchTime }) => {
   const [timer, setTimer] = useState(0);
-  const [sixty, setSixty] = useState(0);
+  const [ten, setTen] = useState(0);
 
   useEffect(() => {
     let interval;
@@ -13,7 +13,7 @@ const StopWatch = ({ isPlaying, catchTime }) => {
       }, 1000);
     } else {
       clearInterval(interval);
-      catchTime(sixty);
+      catchTime({ time: timer, tenOfMin: ten });
     }
     return () => {
       clearInterval(interval);
@@ -24,10 +24,10 @@ const StopWatch = ({ isPlaying, catchTime }) => {
 
   useEffect(() => {
     if (timer % 10 === 0 && timer !== 0) {
-      setSixty(sixty + 1);
+      setTen(ten + 1);
     }
-    if (sixty === 5 && count === 0) {
-      setSixty(0);
+    if (ten === 5 && count === 0) {
+      setTen(0);
     }
   }, [count]);
 
@@ -43,7 +43,7 @@ const StopWatch = ({ isPlaying, catchTime }) => {
         }}
       >
         <p>
-          {Math.floor((timer / 60) % 60)} min {sixty}
+          {Math.floor((timer / 60) % 60)} min {ten}
           {("0" + (timer % 10)).slice(1)} sec
         </p>
       </Box>

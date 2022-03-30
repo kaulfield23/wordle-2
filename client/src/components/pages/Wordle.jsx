@@ -8,8 +8,9 @@ import {
   CustomBox,
 } from "../UI/customMUI/CustomText.jsx";
 import { Link } from "react-router-dom";
+import Register from "../UI/Register.jsx";
 
-const Wordle = ({ wordTypeForGame }) => {
+const Wordle = ({ word }) => {
   const [guessingWord, setGuessingWord] = useState("");
   const [id, setId] = useState();
   const [result, setResult] = useState();
@@ -20,7 +21,7 @@ const Wordle = ({ wordTypeForGame }) => {
 
   const getId = async () => {
     const response = await fetch(
-      `/api/games?wordlength=${wordTypeForGame[0]}&type=${wordTypeForGame[1]}`,
+      `/api/games?wordlength=${word.limit}&type=${word.type}`,
       {
         method: "post",
       }
@@ -36,17 +37,15 @@ const Wordle = ({ wordTypeForGame }) => {
 
   useEffect(() => {
     generateBoxes();
-    checkCorect();
     setChecked(!checked);
   }, [result]);
 
-  const checkCorect = () => {};
   const sendGuessingWord = async (input) => {
     input.preventDefault();
 
     if (input.type === "click") {
-      if (guessingWord.length !== wordTypeForGame[0]) {
-        alert(`You must type ${wordTypeForGame[0]} characters`);
+      if (guessingWord.length !== word.limit) {
+        alert(`You must type ${word.limit} characters`);
         return;
       }
       setGuessingWord("");
@@ -59,23 +58,23 @@ const Wordle = ({ wordTypeForGame }) => {
       const body = await response.json();
       if (body.every((item) => item.result === "Correct")) {
         setNotFinished(false);
-        console.log(notFinished);
       }
       setChecked(!checked);
       setResult(body);
     }
   };
-  console.log(checked, "checked");
+
   const giveUp = () => {
     setIsPlaying(false);
   };
 
   const setFirstBox = () => {
-    let generateBoxes = Array(wordTypeForGame[0]).fill("@");
+    let generateBoxes = Array(word.limit).fill("@");
     return generateBoxes.map((item, idx) => (
       <CustomBox key={idx} className="guessBox" />
     ));
   };
+
   const giveColors = (item) => {
     if (item.result === "Correct") {
       return (
@@ -103,17 +102,20 @@ const Wordle = ({ wordTypeForGame }) => {
       );
     }
   };
+
   const generateBoxes = () => {
     const copyResult = boxes.slice();
     if (result) {
       let generatedBoxes = result.map((item) => giveColors(item));
       copyResult.push(generatedBoxes);
+      copyResult.reverse();
       setBoxes(copyResult);
     }
   };
 
-  const catchTime = (e) => {
-    console.log(e, "hello");
+  const catchTime = (finishedTime) => {
+    console.log(finishedTime, "what");
+    return finishedTime;
   };
 
   return (
@@ -123,27 +125,16 @@ const Wordle = ({ wordTypeForGame }) => {
           <StopWatch isPlaying={notFinished} catchTime={catchTime} />
           {notFinished ? (
             <>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  textAlign: "center",
-                }}
-              >
-                {boxes &&
-                  boxes.map((item) => (
-                    <Box sx={{ display: "flex" }}>{item}</Box>
-                  ))}
-                {checked && (
-                  <Zoom in={checked}>
-                    <Box sx={{ display: "flex", flexDirection: "row" }}>
-                      {setFirstBox()}
-                    </Box>
-                  </Zoom>
-                )}
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={giveUp}
+                  color="secondary"
+                >
+                  <CustomText>I give up🤪</CustomText>
+                </Button>
               </Box>
-
               <Box
                 component="form"
                 sx={{
@@ -153,7 +144,7 @@ const Wordle = ({ wordTypeForGame }) => {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  m: 2,
+                  m: 3,
                 }}
                 noValidate
               >
@@ -176,34 +167,34 @@ const Wordle = ({ wordTypeForGame }) => {
                   <CustomText>Send</CustomText>
                 </Button>
               </Box>
-              <Box sx={{ display: "flex", justifyContent: "center", m: 5 }}>
-                <Button
-                  variant="contained"
-                  size="small"
-                  onClick={giveUp}
-                  color="secondary"
-                >
-                  <CustomText>I give up🤪</CustomText>
-                </Button>
-              </Box>
-            </>
-          ) : (
-            <>
-              <Box sx={{ textAlign: "center", m: 2 }}>
-                <h1>🧁YOU WON !</h1>
-              </Box>
+
               <Box
                 sx={{
                   display: "flex",
+                  flexDirection: "column",
                   alignItems: "center",
-                  justifyContent: "center",
                   textAlign: "center",
                 }}
-                className="correctBox"
               >
-                {result.map((item) => giveColors(item))}
+                {checked && (
+                  <Zoom in={checked}>
+                    <Box sx={{ display: "flex", flexDirection: "row" }}>
+                      {setFirstBox()}
+                    </Box>
+                  </Zoom>
+                )}
+                {boxes &&
+                  boxes.map((item) => (
+                    <Box sx={{ display: "flex" }}>{item}</Box>
+                  ))}
               </Box>
             </>
+          ) : (
+            <Register
+              rightWord={result}
+              giveBoxes={giveColors}
+              recordedTime={catchTime}
+            />
           )}
         </>
       ) : (
