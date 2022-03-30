@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-const Highscore = () => {
+const HighscorePage = () => {
   const getHighScore = async () => {
     const response = await fetch("/api/highscore");
     const body = await response.json();
@@ -12,4 +12,4 @@ const Highscore = () => {
   return <>body</>;
 };
 
-export default Highscore;
+export default HighscorePage;

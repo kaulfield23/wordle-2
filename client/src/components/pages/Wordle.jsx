@@ -18,6 +18,7 @@ const Wordle = ({ word }) => {
   const [notFinished, setNotFinished] = useState(true);
   const [boxes, setBoxes] = useState([]);
   const [checked, setChecked] = useState(true);
+  const [timeRecord, setTimeRecord] = useState("");
 
   const getId = async () => {
     const response = await fetch(
@@ -115,7 +116,10 @@ const Wordle = ({ word }) => {
 
   const catchTime = (finishedTime) => {
     console.log(finishedTime, "what");
-    return finishedTime;
+    let copy = timeRecord.slice();
+    copy = finishedTime;
+    console.log(copy, "copy");
+    setTimeRecord(copy);
   };
 
   return (
@@ -193,7 +197,8 @@ const Wordle = ({ word }) => {
             <Register
               rightWord={result}
               giveBoxes={giveColors}
-              recordedTime={catchTime}
+              recordedTime={timeRecord}
+              userId={id}
             />
           )}
         </>

@@ -1,17 +1,43 @@
 import mongoose from 'mongoose';
 
-const url = `mongodb+srv://haeju:sHeGmQDxIGjsr07I@cluster0.fzzlf.mongodb.net/hello?retryWrites=true&w=majority`
+const url = `mongodb+srv://haeju23:i0fHeXduUREiarhz@cluster0.yjrpv.mongodb.net/wordle?retryWrites=true&w=majority`
 
-const connectionParmas = {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true
-}
+mongoose.connect(
+    url,
+    () => console.log('MongoDB is connected')
+);
 
-mongoose.connect(url, connectionParmas)
-    .then(() => {
-        console.log('connected to database')
-    })
-    .catch((err) => {
-        console.error(`Error connecting to the database. ${err}`)
-    })
+const Highscore = mongoose.model('highscores', {
+    userId: {
+        type: String,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true,
+    },
+    playTime: {
+        type: String,
+        required: true
+    },
+    guesses: {
+        type: Number,
+        required: true
+    },
+    wordLength: {
+        type: Number,
+        required: true
+    },
+    wordType: {
+        type: String,
+        required: true
+    },
+    correctWord: {
+        type: String,
+        required: true
+    }
+});
+
+export {
+    Highscore
+};

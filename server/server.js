@@ -1,5 +1,6 @@
 import express from 'express';
 import api from './router/api.js'
+
 const app = express();
 
 app.use(express.json())
