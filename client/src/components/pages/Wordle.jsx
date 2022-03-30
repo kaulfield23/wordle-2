@@ -2,13 +2,9 @@ import { Button, TextField, Grow, Zoom } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import StopWatch from "../UI/StopWatch";
-import {
-  CustomText,
-  CustomButton,
-  CustomBox,
-} from "../UI/customMUI/CustomText.jsx";
-import { Link } from "react-router-dom";
+import { CustomText, CustomBox } from "../UI/customMUI/CustomText.jsx";
 import Register from "../UI/Register.jsx";
+import GiveUpMenu from "./GiveUpMenu.jsx";
 
 const Wordle = ({ word }) => {
   const [guessingWord, setGuessingWord] = useState("");
@@ -171,7 +167,6 @@ const Wordle = ({ word }) => {
                   <CustomText>Send</CustomText>
                 </Button>
               </Box>
-
               <Box
                 sx={{
                   display: "flex",
@@ -203,28 +198,7 @@ const Wordle = ({ word }) => {
           )}
         </>
       ) : (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            width: "300px",
-            height: "90vh",
-            margin: "0 auto",
-          }}
-        >
-          <Link to="/highscore">
-            <CustomButton variant="contained" color="secondary">
-              <CustomText>Checkout highscores</CustomText>
-            </CustomButton>
-          </Link>
-          <Link to="/info">
-            <CustomButton variant="contained">
-              <CustomText>Information about Wordle</CustomText>
-            </CustomButton>
-          </Link>
-        </Box>
+        <GiveUpMenu />
       )}
     </>
   );

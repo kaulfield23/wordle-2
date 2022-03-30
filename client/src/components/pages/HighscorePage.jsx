@@ -1,15 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const HighscorePage = () => {
+  const [body, setBody] = useState();
   const getHighScore = async () => {
     const response = await fetch("/api/highscore");
-    const body = await response.json();
-    console.log(body, "hellooooo");
+    const resBody = await response.text();
+    setBody(resBody);
   };
   useEffect(() => {
     getHighScore();
   }, []);
-  return <>body</>;
+  return (
+    <>
+      <div dangerouslySetInnerHTML={{ __html: body }} />
+    </>
+  );
 };
 
 export default HighscorePage;

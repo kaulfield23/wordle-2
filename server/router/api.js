@@ -8,8 +8,9 @@ import verifyWord from "../functions/verifyWord.js";
 import {
     Highscore
 } from "../db.js"
-
-
+import {
+    renderHighscores
+} from "../functions/renderHighscores.js";
 
 
 const router = express.Router();
@@ -78,13 +79,12 @@ router.post("/games/:userId/highscore", async(req, res) => {
 })
 
 router.get("/highscore", async(req, res) => {
-
     const scores = await Highscore.find();
-    try {
-        res.json(scores);
-    } catch (error) {
-        res.status(500).send(error)
-    }
+    // scores.map((item) => console.log(item.name))
+    res.render('highscore', {
+        highscore: renderHighscores(scores)
+    })
+
 });
 
 export default router;

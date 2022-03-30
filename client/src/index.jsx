@@ -1,13 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
 import Info from "./components/pages/Info";
 import Wordle from "./components/pages/Wordle";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavbarMUI from "./components/UI/NavbarMUI";
 import { createTheme, ThemeProvider } from "@mui/material";
-// import Highscore from "./components/pages/Highscore";
+import HighscorePage from "./components/pages/HighscorePage";
 
 const theme = createTheme({
   palette: {
@@ -20,7 +19,7 @@ const theme = createTheme({
   },
 });
 
-ReactDOM.hydrate(
+ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider theme={theme}>
@@ -29,7 +28,7 @@ ReactDOM.hydrate(
           <Routes>
             <Route exact path="/" element={<App />} />
             <Route exact path="/info" element={<Info />} />
-            {/* <Route exact path="/highscore" element={<Highscore />} /> */}
+            <Route exact path="/highscore" element={<HighscorePage />} />
             <Route exact path="/wordle" element={<Wordle />} />
           </Routes>
         </div>

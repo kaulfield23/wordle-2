@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Wordle from "./components/pages/Wordle";
 import ConfigureGame from "./components/pages/ConfigureGame";
 const App = () => {
