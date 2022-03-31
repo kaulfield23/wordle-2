@@ -1,4 +1,4 @@
-import { Button, TextField, Grow, Zoom } from "@mui/material";
+import { Button, TextField, Zoom } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import StopWatch from "../UI/StopWatch";
@@ -9,38 +9,29 @@ import {
 } from "../UI/customMUI/CustomText.jsx";
 import Register from "../UI/Register.jsx";
 import GiveUpMenu from "./GiveUpMenu.jsx";
-import giveColorBoxes from "../UI/giveColorBoxes";
+import ColorBoxes from "../UI/ColorBoxes";
 
 const Wordle = ({ word }) => {
   const [guessingWord, setGuessingWord] = useState("");
   const [id, setId] = useState();
-  const [result, setResult] = useState();
+  const [guesses, setGuesses] = useState([]);
   const [isPlaying, setIsPlaying] = useState(true);
   const [notFinished, setNotFinished] = useState(true);
-  const [boxes, setBoxes] = useState([]);
-  const [checked, setChecked] = useState(true);
   const [timeRecord, setTimeRecord] = useState("");
 
-  const getId = async () => {
-    const response = await fetch(
-      `/api/games?wordlength=${word.limit}&type=${word.type}`,
-      {
-        method: "post",
-      }
-    );
-    const body = await response.json();
-    setId(body.id);
-    setChecked((prev) => !prev);
-  };
-
   useEffect(() => {
+    const getId = async () => {
+      const response = await fetch(
+        `/api/games?wordlength=${word.limit}&type=${word.type}`,
+        {
+          method: "post",
+        }
+      );
+      const body = await response.json();
+      setId(body.id);
+    };
     getId();
-  }, []);
-
-  useEffect(() => {
-    generateBoxes();
-    setChecked(!checked);
-  }, [result]);
+  }, [word.limit, word.type]);
 
   const sendGuessingWord = async (input) => {
     input.preventDefault();
@@ -58,8 +49,8 @@ const Wordle = ({ word }) => {
         body: JSON.stringify({ guessWord: guessingWord }),
       });
       const body = await response.json();
-      setChecked(!checked);
-      setResult(body);
+
+      setGuesses([...guesses, body].reverse());
 
       if (body.every((item) => item.result === "Correct")) {
         setNotFinished(false);
@@ -76,16 +67,6 @@ const Wordle = ({ word }) => {
     return generateBoxes.map((item, idx) => (
       <CustomBox key={idx} className="guessBox" />
     ));
-  };
-
-  const generateBoxes = () => {
-    const copyResult = boxes.slice();
-    if (result) {
-      let generatedBoxes = result.map((item) => giveColorBoxes(item));
-      copyResult.push(generatedBoxes);
-      copyResult.reverse();
-      setBoxes(copyResult);
-    }
   };
 
   const catchTime = (finishedTime) => {
@@ -146,22 +127,24 @@ const Wordle = ({ word }) => {
                   textAlign: "center",
                 }}
               >
-                {checked && (
-                  <Zoom in={checked}>
-                    <Box sx={{ display: "flex", flexDirection: "row" }}>
-                      {setFirstBox()}
-                    </Box>
-                  </Zoom>
-                )}
-                {boxes &&
-                  boxes.map((item) => (
-                    <Box sx={{ display: "flex" }}>{item}</Box>
-                  ))}
+                <Zoom key={guesses.length} in={true}>
+                  <Box sx={{ display: "flex", flexDirection: "row" }}>
+                    {setFirstBox()}
+                  </Box>
+                </Zoom>
+
+                {guesses.map((guess, idx) => (
+                  <Box key={idx} sx={{ display: "flex" }}>
+                    {guess.map((item, idx) => (
+                      <ColorBoxes item={item} key={idx} />
+                    ))}
+                  </Box>
+                ))}
               </CenterBox>
             </>
           ) : (
             <Register
-              rightWord={result}
+              rightWord={guesses[0]}
               recordedTime={timeRecord}
               userId={id}
             />

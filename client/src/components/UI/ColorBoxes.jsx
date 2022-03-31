@@ -2,7 +2,8 @@ import { Box } from "@mui/system";
 import React from "react";
 import { CustomBox, CustomText } from "./customMUI/CustomText";
 
-const giveColorBoxes = (item) => {
+const ColorBoxes = ({ item }) => {
+  console.log(item, "item");
   if (item.result === "Correct") {
     return (
       <CustomBox sx={{ backgroundColor: "#65c2a6" }}>
@@ -30,4 +31,4 @@ const giveColorBoxes = (item) => {
   }
 };
 
-export default giveColorBoxes;
+export default ColorBoxes;

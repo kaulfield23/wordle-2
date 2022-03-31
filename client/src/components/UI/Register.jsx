@@ -7,7 +7,7 @@ import {
   CenterBox,
   CenterHorizon,
 } from "./customMUI/CustomText";
-import giveColorBoxes from "./giveColorBoxes";
+import ColorBoxes from "./ColorBoxes";
 
 const Register = ({ rightWord, recordedTime, userId }) => {
   const [userName, setUserName] = useState("");
@@ -40,7 +40,7 @@ const Register = ({ rightWord, recordedTime, userId }) => {
         }}
         className="correctBox"
       >
-        {rightWord.map((item) => giveColorBoxes(item))}
+        {rightWord.map((item) => ColorBoxes(item))}
       </CenterBox>
       <Box
         sx={{
