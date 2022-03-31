@@ -20,6 +20,10 @@ const Highscore = mongoose.model('highscores', {
         type: String,
         required: true
     },
+    timer: {
+        type: Number,
+        required: true,
+    },
     guesses: {
         type: Number,
         required: true

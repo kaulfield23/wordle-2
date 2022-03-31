@@ -1,4 +1,4 @@
-export const renderHighscores = (item) => item.map(item => {
+export const highscoreElem = (item) => item.map(item => {
     return {
         userId: item.userId,
         name: item.name,

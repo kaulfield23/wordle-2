@@ -17,6 +17,7 @@ import { CustomText } from "../UI/customMUI/CustomText";
 const ConfigureGame = (props) => {
   const [wordLimit, setWordLimit] = useState("");
   const [wordType, setWordType] = useState("repeating");
+
   const handleChange = (e) => {
     setWordLimit(e.target.value);
   };

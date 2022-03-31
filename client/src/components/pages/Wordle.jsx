@@ -53,11 +53,12 @@ const Wordle = ({ word }) => {
         body: JSON.stringify({ guessWord: guessingWord }),
       });
       const body = await response.json();
+      setChecked(!checked);
+      setResult(body);
+
       if (body.every((item) => item.result === "Correct")) {
         setNotFinished(false);
       }
-      setChecked(!checked);
-      setResult(body);
     }
   };
 

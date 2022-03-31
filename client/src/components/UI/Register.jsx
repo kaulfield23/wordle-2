@@ -5,8 +5,6 @@ import { CustomButton, CustomText } from "./customMUI/CustomText";
 
 const Register = ({ rightWord, giveBoxes, recordedTime, userId }) => {
   const [userName, setUserName] = useState("");
-  console.log(recordedTime, "recordedtime");
-  console.log(userId, "userId");
 
   const sendHighScore = async (e) => {
     e.preventDefault();

@@ -9,8 +9,8 @@ import {
     Highscore
 } from "../db.js"
 import {
-    renderHighscores
-} from "../functions/renderHighscores.js";
+    highscoreElem
+} from "../functions/highscoreElem.js";
 
 
 const router = express.Router();
@@ -32,6 +32,7 @@ router.post("/games", async(req, res) => {
     res.status(201).json({
         id: game.id,
     });
+    console.log(game.correctWord)
 });
 
 router.post("/games/:userId/guess", async(req, res) => {
@@ -45,7 +46,6 @@ router.post("/games/:userId/guess", async(req, res) => {
     } else {
         res.status(404).end();
     }
-    console.log(isPlaying.correctWord, "correct word");
 });
 
 router.post("/games/:userId/highscore", async(req, res) => {
@@ -62,6 +62,7 @@ router.post("/games/:userId/highscore", async(req, res) => {
             userId: id,
             name: userName,
             playTime: `${min} ${ten}${sec} sec`,
+            timer: userPlayTime.time,
             guesses: usersGame.guesses.length,
             wordLength: usersGame.correctWord.length,
             wordType: usersGame.wordType,
@@ -80,9 +81,10 @@ router.post("/games/:userId/highscore", async(req, res) => {
 
 router.get("/highscore", async(req, res) => {
     const scores = await Highscore.find();
-    // scores.map((item) => console.log(item.name))
+    scores.sort((a, b) => a.timer - b.timer);
+    let topTen = scores.splice(0, 10)
     res.render('highscore', {
-        highscore: renderHighscores(scores)
+        highscore: highscoreElem(topTen)
     })
 
 });
