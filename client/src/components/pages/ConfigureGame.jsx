@@ -12,7 +12,7 @@ import {
   FormLabel,
   Button,
 } from "@mui/material";
-import { CustomText } from "../UI/customMUI/CustomText";
+import { CustomText, CenterHorizon } from "../UI/customMUI/CustomText";
 
 const ConfigureGame = (props) => {
   const [wordLimit, setWordLimit] = useState("");
@@ -78,10 +78,8 @@ const ConfigureGame = (props) => {
           </Select>
         </FormControl>
       </Box>
-      <Box
+      <CenterHorizon
         sx={{
-          display: "flex",
-          justifyContent: "center",
           marginBottom: "20px",
         }}
       >
@@ -109,19 +107,17 @@ const ConfigureGame = (props) => {
             />
           </RadioGroup>
         </FormControl>
-      </Box>
+      </CenterHorizon>
 
-      <Box
+      <CenterHorizon
         sx={{
-          display: "flex",
-          justifyContent: "center",
           paddingBottom: "30px",
         }}
       >
         <Button variant="contained" onClick={checkValues}>
           <CustomText>PLAY WORDLE!</CustomText>
         </Button>
-      </Box>
+      </CenterHorizon>
     </>
   );
 };

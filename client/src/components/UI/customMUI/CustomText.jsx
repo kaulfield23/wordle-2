@@ -30,3 +30,16 @@ export const CustomBox = styled((props) => <Box {...props} />)(({ theme }) => ({
   borderRadius: "12px",
   margin: "0 5px 10px 10px",
 }));
+
+export const CenterBox = styled((props) => <Box {...props} />)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+}));
+
+export const CenterHorizon = styled((props) => <Box {...props} />)(
+  ({ theme }) => ({
+    display: "flex",
+    justifyContent: "center",
+  })
+);

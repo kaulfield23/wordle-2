@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { Box } from "@mui/system";
 import { TextField } from "@mui/material";
-import { CustomButton, CustomText } from "./customMUI/CustomText";
+import {
+  CustomButton,
+  CustomText,
+  CenterBox,
+  CenterHorizon,
+} from "./customMUI/CustomText";
+import giveColorBoxes from "./giveColorBoxes";
 
-const Register = ({ rightWord, giveBoxes, recordedTime, userId }) => {
+const Register = ({ rightWord, recordedTime, userId }) => {
   const [userName, setUserName] = useState("");
 
   const sendHighScore = async (e) => {
@@ -28,17 +34,14 @@ const Register = ({ rightWord, giveBoxes, recordedTime, userId }) => {
       <Box sx={{ textAlign: "center", m: 2 }}>
         <h1>🧁YOU WON !</h1>
       </Box>
-      <Box
+      <CenterBox
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
           textAlign: "center",
         }}
         className="correctBox"
       >
-        {rightWord.map((item) => giveBoxes(item))}
-      </Box>
+        {rightWord.map((item) => giveColorBoxes(item))}
+      </CenterBox>
       <Box
         sx={{
           textAlign: "center",
@@ -51,11 +54,9 @@ const Register = ({ rightWord, giveBoxes, recordedTime, userId }) => {
         }}
       >
         <h3>Register to highscore</h3>
-        <Box
+        <CenterHorizon
           component="form"
           sx={{
-            display: "flex",
-            justifyContent: "center",
             m: 2,
           }}
           noValidate
@@ -82,7 +83,7 @@ const Register = ({ rightWord, giveBoxes, recordedTime, userId }) => {
           >
             <CustomText>Register</CustomText>
           </CustomButton>
-        </Box>
+        </CenterHorizon>
       </Box>
     </>
   );
