@@ -3,8 +3,7 @@ import React from "react";
 import { CustomBox, CustomText } from "./customMUI/CustomText";
 
 const ColorBoxes = ({ item }) => {
-  console.log(item, "item");
-  if (item.result === "Correct") {
+  if (item?.result === "Correct") {
     return (
       <CustomBox sx={{ backgroundColor: "#65c2a6" }}>
         <Box sx={{ position: "relative", top: "30%" }}>
@@ -12,7 +11,7 @@ const ColorBoxes = ({ item }) => {
         </Box>
       </CustomBox>
     );
-  } else if (item.result === "Misplaced") {
+  } else if (item?.result === "Misplaced") {
     return (
       <CustomBox sx={{ backgroundColor: "#f8d486" }}>
         <Box sx={{ position: "relative", top: "30%" }}>
@@ -24,7 +23,7 @@ const ColorBoxes = ({ item }) => {
     return (
       <CustomBox sx={{ backgroundColor: "#ec8585" }}>
         <Box sx={{ position: "relative", top: "30%" }}>
-          <CustomText>{item.letter}</CustomText>
+          <CustomText>{item?.letter}</CustomText>
         </Box>
       </CustomBox>
     );

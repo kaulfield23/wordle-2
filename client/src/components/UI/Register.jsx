@@ -40,7 +40,9 @@ const Register = ({ rightWord, recordedTime, userId }) => {
         }}
         className="correctBox"
       >
-        {rightWord.map((item) => ColorBoxes(item))}
+        {rightWord.map((item) => (
+          <ColorBoxes item={item} />
+        ))}
       </CenterBox>
       <Box
         sx={{
