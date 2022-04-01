@@ -1,7 +1,29 @@
-<div class="main">
-  <h1>Highscore</h1>
+<div class="wholeScores">
+  <h1 id="highscore">Highscore</h1>
   {{#each highscore}}
-    <div class=""><h1>{{this.name}}</h1></div>
-    <div><h1>{{this.correctWord}}</h1></div>
+
+    <div class="score">
+      <div class="userInfo">
+        <h1 id="rank">{{math @index "+" 1}}</h1>
+        <h2 id="userName">{{this.name}}</h2>
+          <div class="gameInfo">
+            <h3>{{this.playTime}}</h3>
+            <h3>Guess : {{this.guesses}}</h3>
+          </div>
+      
+      </div>
+      <div>
+        <div class="correctWord">
+          <div class="correctWordList">
+            <h3 id="word">Word : </h3>
+            {{#strFunc this.correctWord}}
+              {{this}}
+            {{/strFunc}}
+          </div>
+          <h3 id="wordType">{{this.wordType}}</h3>
+        </div>
+      </div>
+    </div>
+
   {{/each}}
 </div>

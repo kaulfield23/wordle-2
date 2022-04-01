@@ -28,3 +28,83 @@ h3 {
         opacity: 1;
     }
 }
+
+.wholeScores {
+    margin: 10px;
+}
+
+.score {
+    background-color: #f8d486;
+    /* background-color: #e0d2ee; */
+    /* border: 5px solid #7cb48a; */
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 500px;
+}
+
+#highscore {
+    text-align: center;
+    margin: 70px 0 50px 0;
+    font-family: "Press start 2P";
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+}
+
+#userName {
+    font-family: "press start 2p";
+}
+
+.gameInfo {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 240);
+    padding: 5px;
+    border-radius: 10px;
+    justify-items: end;
+    /* border: #79da8e solid 2px; */
+}
+
+#rank {
+    color: #9e74ff;
+    margin-right: 5px;
+    /* background-color: rgb(255, 255, 240); */
+    background-color: rgb(255, 254, 176);
+    padding: 4px;
+    border-radius: 10px;
+}
+
+.correctWord {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.correctWordList {
+    display: flex;
+    align-items: center;
+    /* font-family: "press start 2p"; */
+}
+
+#word {
+    margin-right: 3px;
+}
+
+.rightWordsBox {
+    background-color: #79da8e;
+    text-align: center;
+    /* padding: 3px 10px; */
+    width: 25px;
+    height: 25px;
+    margin: 2px;
+    border: solid 3px #6d4c41;
+    border-radius: 10px;
+}
+
+.idea {
+    display: flex;
+    justify-content: end;
+}
