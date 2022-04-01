@@ -30,13 +30,11 @@ h3 {
 }
 
 .wholeScores {
-    margin: 10px;
+    margin: 30px 10px;
 }
 
 .score {
-    background-color: #f8d486;
-    /* background-color: #e0d2ee; */
-    /* border: 5px solid #7cb48a; */
+    background-color: #fce2ac;
     margin: 10px auto;
     padding: 10px;
     border-radius: 10px;
@@ -56,6 +54,8 @@ h3 {
 
 #userName {
     font-family: "press start 2p";
+    width: 100px;
+    padding-left: 3px;
 }
 
 .gameInfo {
@@ -64,15 +64,15 @@ h3 {
     background-color: rgb(255, 255, 240);
     padding: 5px;
     border-radius: 10px;
-    justify-items: end;
-    /* border: #79da8e solid 2px; */
+    width: 100px;
 }
 
 #rank {
+    text-align: center;
+    width: 25px;
     color: #9e74ff;
     margin-right: 5px;
-    /* background-color: rgb(255, 255, 240); */
-    background-color: rgb(255, 254, 176);
+    background-color: rgb(255, 254, 254);
     padding: 4px;
     border-radius: 10px;
 }
@@ -86,7 +86,6 @@ h3 {
 .correctWordList {
     display: flex;
     align-items: center;
-    /* font-family: "press start 2p"; */
 }
 
 #word {
@@ -94,9 +93,8 @@ h3 {
 }
 
 .rightWordsBox {
-    background-color: #79da8e;
+    background-color: #7ad68e;
     text-align: center;
-    /* padding: 3px 10px; */
     width: 25px;
     height: 25px;
     margin: 2px;
@@ -104,7 +102,39 @@ h3 {
     border-radius: 10px;
 }
 
-.idea {
-    display: flex;
-    justify-content: end;
+.gap {
+    flex-grow: 5;
+}
+
+.scoreItem {
+    flex-grow: 1;
+}
+
+@media screen and (max-width: 800px) {
+    #wordType {
+        font-size: 16px;
+    }
+    #word {
+        font-size: 14px;
+    }
+    .gameInfo {
+        font-size: 13px;
+    }
+    #userName {
+        font-size: 18px;
+    }
+    #rank {
+        font-size: 20px;
+    }
+    #highscore {
+        font-size: 20px;
+    }
+    .rightWordsBox {
+        width: 20px;
+        height: 20px;
+        font-size: 14px;
+    }
+    .correctWord {
+        margin-top: 10px;
+    }
 }
