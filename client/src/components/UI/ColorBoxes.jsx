@@ -1,6 +1,6 @@
 import { Box } from "@mui/system";
 import React from "react";
-import { CustomBox, CustomText } from "./customMUI/CustomText";
+import { CustomBox, CustomText } from "./customMUI/CustomMUI";
 
 const ColorBoxes = ({ item }) => {
   if (item?.result === "Correct") {

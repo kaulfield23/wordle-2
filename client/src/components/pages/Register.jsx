@@ -6,8 +6,8 @@ import {
   CustomText,
   CenterBox,
   CenterHorizon,
-} from "./customMUI/CustomText";
-import ColorBoxes from "./ColorBoxes";
+} from "../UI/customMUI/CustomMUI";
+import ColorBoxes from "../UI/ColorBoxes";
 
 const Register = ({ rightWord, recordedTime, userId }) => {
   const [userName, setUserName] = useState("");

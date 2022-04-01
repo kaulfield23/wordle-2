@@ -1,6 +1,6 @@
 import { Box } from "@mui/system";
 import { Link } from "react-router-dom";
-import { CustomText, CustomButton } from "../UI/customMUI/CustomText.jsx";
+import { CustomText, CustomButton } from "./customMUI/CustomMUI";
 import React from "react";
 
 const GiveUpMenu = () => {

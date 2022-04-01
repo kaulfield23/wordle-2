@@ -2,13 +2,9 @@ import { Button, TextField, Zoom } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import StopWatch from "../UI/StopWatch";
-import {
-  CustomText,
-  CustomBox,
-  CenterBox,
-} from "../UI/customMUI/CustomText.jsx";
-import Register from "../UI/Register.jsx";
-import GiveUpMenu from "./GiveUpMenu.jsx";
+import { CustomText, CustomBox, CenterBox } from "../UI/customMUI/CustomMUI";
+import Register from "./Register";
+import GiveUpMenu from "../UI/GiveUpMenu";
 import ColorBoxes from "../UI/ColorBoxes";
 
 const Wordle = ({ word }) => {
