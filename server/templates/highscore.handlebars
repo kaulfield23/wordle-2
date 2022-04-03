@@ -1,5 +1,14 @@
 <div class="wholeScores">
   <h1 id="highscore">🧁Highscore</h1>
+
+  {{#if rankOfUser}}
+    <div id="rankFrame">
+      <h1 id="showRank">Your Rank is #
+        <span id="rankNum">
+          {{rankOfUser}}
+        </span>
+      </h1>
+    </div>{{/if}}
   {{#each highscore}}
     <div class="score">
       <div class="userInfo">
@@ -22,6 +31,6 @@
         <h3 id="wordType">{{this.wordType}}</h3>
       </div>
     </div>
-
   {{/each}}
+
 </div>

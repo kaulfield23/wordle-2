@@ -79,13 +79,23 @@ router.post("/games/:userId/highscore", async(req, res) => {
 
 })
 
-router.get("/highscore", async(req, res) => {
+router.get("/highscore/:userId", async(req, res) => {
+    const playerId = req.params.userId
     const scores = await Highscore.find();
     scores.sort((a, b) => a.timer - b.timer);
-    let topTen = scores.splice(0, 10)
-    res.render('highscore', {
-        highscore: highscoreElem(topTen)
-    })
+    if (playerId) {
+        const userRank = scores.findIndex((item) => item.userId === playerId)
+        let topTen = scores.splice(0, 10)
+        res.render('highscore', {
+            highscore: highscoreElem(topTen),
+            rankOfUser: userRank + 1
+        })
+    } else {
+        let topTen = scores.splice(0, 10)
+        res.render('highscore', {
+            highscore: highscoreElem(topTen)
+        })
+    }
 
 });
 
