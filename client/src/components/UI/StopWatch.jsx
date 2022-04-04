@@ -26,7 +26,7 @@ const StopWatch = ({ isPlaying, catchMin, catchTime }) => {
 
   useEffect(() => {
     catchMin(ten);
-    if (ten === 5 && count === 0) {
+    if (ten === 6 && count === 0) {
       setTen(0);
     }
   }, [ten, catchMin, count]);
