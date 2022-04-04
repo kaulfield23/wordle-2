@@ -3,6 +3,7 @@ import React from "react";
 import { CustomBox, CustomText } from "./customMUI/CustomMUI";
 
 const ColorBoxes = ({ item }) => {
+  console.log("color boxes");
   if (item?.result === "Correct") {
     return (
       <CustomBox sx={{ backgroundColor: "#65c2a6" }}>

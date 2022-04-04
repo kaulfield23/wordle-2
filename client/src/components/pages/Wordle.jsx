@@ -6,6 +6,7 @@ import { CustomText, CustomBox, CenterBox } from "../UI/customMUI/CustomMUI";
 import Register from "./Register";
 import GiveUpMenu from "../UI/GiveUpMenu";
 import ColorBoxes from "../UI/ColorBoxes";
+import InputText from "../UI/InputText";
 
 const Wordle = ({ word }) => {
   const [guessingWord, setGuessingWord] = useState("");
@@ -13,7 +14,6 @@ const Wordle = ({ word }) => {
   const [guesses, setGuesses] = useState([]);
   const [isPlaying, setIsPlaying] = useState(true);
   const [notFinished, setNotFinished] = useState(true);
-  const [timeRecord, setTimeRecord] = useState(null);
   const [ten, setTen] = useState(null);
   const [timer, setTimer] = useState(null);
 
@@ -32,6 +32,7 @@ const Wordle = ({ word }) => {
   }, [word.limit, word.type]);
 
   const sendGuessingWord = async (input) => {
+    console.log("wordle guessing");
     input.preventDefault();
 
     if (input.type === "click") {
@@ -39,7 +40,7 @@ const Wordle = ({ word }) => {
         alert(`You must type ${word.limit} characters`);
         return;
       }
-      setGuessingWord("");
+      // setGuessingWord("");
 
       const response = await fetch(`/api/games/${id}/guess`, {
         method: "post",
@@ -55,6 +56,8 @@ const Wordle = ({ word }) => {
       }
     }
   };
+
+  const inputWord = () => {};
 
   const giveUp = () => {
     setIsPlaying(false);
@@ -99,7 +102,8 @@ const Wordle = ({ word }) => {
                   <CustomText>I give up🤪</CustomText>
                 </Button>
               </Box>
-              <CenterBox
+              <InputText sendGuess={sendGuessingWord} inputGuess={inputWord} />
+              {/* <CenterBox
                 component="form"
                 sx={{
                   "& > :not(style)": {
@@ -127,7 +131,7 @@ const Wordle = ({ word }) => {
                 >
                   <CustomText>Send</CustomText>
                 </Button>
-              </CenterBox>
+              </CenterBox> */}
               <CenterBox
                 sx={{
                   flexDirection: "column",
