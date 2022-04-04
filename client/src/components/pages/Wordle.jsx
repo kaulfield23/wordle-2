@@ -13,7 +13,9 @@ const Wordle = ({ word }) => {
   const [guesses, setGuesses] = useState([]);
   const [isPlaying, setIsPlaying] = useState(true);
   const [notFinished, setNotFinished] = useState(true);
-  const [timeRecord, setTimeRecord] = useState("");
+  const [timeRecord, setTimeRecord] = useState(null);
+  const [ten, setTen] = useState(null);
+  const [timer, setTimer] = useState(null);
 
   useEffect(() => {
     const getId = async () => {
@@ -65,17 +67,26 @@ const Wordle = ({ word }) => {
     ));
   };
 
-  const catchTime = (finishedTime) => {
-    let copy = timeRecord.slice();
-    copy = finishedTime;
-    setTimeRecord(copy);
+  const catchMin = (value) => {
+    if (!notFinished) {
+      setTen(value);
+    }
+  };
+  const catchTime = (value) => {
+    if (!notFinished) {
+      setTimer(value);
+    }
   };
 
   return (
     <>
       {isPlaying ? (
         <>
-          <StopWatch isPlaying={notFinished} catchTime={catchTime} />
+          <StopWatch
+            isPlaying={notFinished}
+            catchMin={catchMin}
+            catchTime={catchTime}
+          />
           {notFinished ? (
             <>
               <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -141,7 +152,7 @@ const Wordle = ({ word }) => {
           ) : (
             <Register
               rightWord={guesses[0]}
-              recordedTime={timeRecord}
+              recordedTime={{ time: timer, ten: ten }}
               userId={id}
             />
           )}

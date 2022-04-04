@@ -14,7 +14,6 @@ const Register = ({ rightWord, recordedTime, userId }) => {
   const [userName, setUserName] = useState("");
   const [registered, setRegistered] = useState(false);
   const [check, setCheck] = useState(false);
-
   const sendHighScore = async (e) => {
     e.preventDefault();
 
@@ -23,9 +22,14 @@ const Register = ({ rightWord, recordedTime, userId }) => {
         alert(`Type less than 8 characters for the name`);
         return;
       }
+      console.log(
+        typeof recordedTime.time,
+        typeof recordedTime.ten,
+        "yeyeyeyey"
+      );
       const usersScore = {
         name: userName.toUpperCase(),
-        playTime: { time: recordedTime.time, ten: recordedTime.tenOfMin },
+        playTime: { time: recordedTime.time, ten: recordedTime.ten },
       };
       await fetch(`/api/games/${userId}/highscore`, {
         method: "post",

@@ -49,6 +49,7 @@ router.post("/games/:userId/guess", async(req, res) => {
 });
 
 router.post("/games/:userId/highscore", async(req, res) => {
+    console.log(req.body.playTime, 'haeju')
     const id = req.params.userId;
     const usersGame = GAMES.find((savedOne) => savedOne.id === id)
 
