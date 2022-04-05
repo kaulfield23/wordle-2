@@ -35,31 +35,6 @@ const StopWatch = ({ isPlaying, catchMin, catchTime }) => {
     catchTime(timer);
   }, [timer, catchTime]);
 
-  //old codes
-  // useEffect(() => {
-  //     let interval;
-  //     if (isPlaying) {
-  //       interval = setInterval(() => {
-  //         setTimer((prev) => prev + 1);
-  //       }, 1000);
-  //     } else {
-  //       clearInterval(interval);
-  //       catchTime({ time: timer, tenOfMin: ten });
-  //     }
-  //     return () => {
-  //       clearInterval(interval);
-  //     };
-  //   }, [isPlaying]);
-
-  // useEffect(() => {
-  //   // if (timer % 10 === 0 && timer !== 0) {
-  //   //   setTen(ten + 1);
-  //   // }
-  //   // if (ten === 5 && count === 0) {
-  //   //   setTen(0);
-  //   // }
-  // }, [count]);
-
   return (
     <>
       <Box

@@ -1,4 +1,4 @@
-import { Button, TextField, Zoom } from "@mui/material";
+import { Button, Zoom } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import StopWatch from "../UI/StopWatch";
@@ -9,13 +9,13 @@ import ColorBoxes from "../UI/ColorBoxes";
 import InputText from "../UI/InputText";
 
 const Wordle = ({ word }) => {
-  const [guessingWord, setGuessingWord] = useState("");
   const [id, setId] = useState();
   const [guesses, setGuesses] = useState([]);
   const [isPlaying, setIsPlaying] = useState(true);
   const [notFinished, setNotFinished] = useState(true);
   const [ten, setTen] = useState(null);
   const [timer, setTimer] = useState(null);
+  const [width, setWidth] = useState();
 
   useEffect(() => {
     const getId = async () => {
@@ -31,42 +31,51 @@ const Wordle = ({ word }) => {
     getId();
   }, [word.limit, word.type]);
 
-  const sendGuessingWord = async (input) => {
-    console.log("wordle guessing");
-    input.preventDefault();
+  const postGuessingWord = async (guessingWord) => {
+    const response = await fetch(`/api/games/${id}/guess`, {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ guessWord: guessingWord }),
+    });
+    const body = await response.json();
 
-    if (input.type === "click") {
-      if (guessingWord.length !== word.limit) {
-        alert(`You must type ${word.limit} characters`);
-        return;
-      }
-      // setGuessingWord("");
+    setGuesses([...guesses, body].reverse());
 
-      const response = await fetch(`/api/games/${id}/guess`, {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ guessWord: guessingWord }),
-      });
-      const body = await response.json();
-
-      setGuesses([...guesses, body].reverse());
-
-      if (body.every((item) => item.result === "Correct")) {
-        setNotFinished(false);
-      }
+    if (body.every((item) => item.result === "Correct")) {
+      setNotFinished(false);
     }
   };
-
-  const inputWord = () => {};
 
   const giveUp = () => {
     setIsPlaying(false);
   };
 
+  let boxSize;
+
+  useEffect(() => {
+    function handleSize() {
+      setWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleSize);
+    handleSize();
+
+    return () => {
+      window.removeEventListener("resize", handleSize);
+    };
+  }, [setWidth]);
+
+  if (width <= 700) {
+    boxSize = `45px`;
+  }
+
   const setFirstBox = () => {
     let generateBoxes = Array(word.limit).fill("@");
     return generateBoxes.map((item, idx) => (
-      <CustomBox key={idx} className="guessBox" />
+      <CustomBox
+        key={idx}
+        className="guessBox"
+        sx={{ width: `${boxSize}`, height: `${boxSize}` }}
+      />
     ));
   };
 
@@ -102,36 +111,7 @@ const Wordle = ({ word }) => {
                   <CustomText>I give up🤪</CustomText>
                 </Button>
               </Box>
-              <InputText sendGuess={sendGuessingWord} inputGuess={inputWord} />
-              {/* <CenterBox
-                component="form"
-                sx={{
-                  "& > :not(style)": {
-                    m: 1,
-                  },
-                  m: 3,
-                }}
-                noValidate
-              >
-                <TextField
-                  id="filled-basic"
-                  label="Guessing word"
-                  variant="filled"
-                  value={guessingWord}
-                  onChange={(e) => setGuessingWord(e.target.value)}
-                  onKeyUp={sendGuessingWord}
-                  sx={{ width: "250px" }}
-                />
-                <Button
-                  type="submit"
-                  variant="contained"
-                  size="medium"
-                  onClick={sendGuessingWord}
-                  sx={{ height: "55px" }}
-                >
-                  <CustomText>Send</CustomText>
-                </Button>
-              </CenterBox> */}
+              <InputText sendGuess={postGuessingWord} word={word} />
               <CenterBox
                 sx={{
                   flexDirection: "column",

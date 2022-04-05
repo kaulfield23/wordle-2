@@ -24,8 +24,8 @@ export const CustomButton = styled((props) => <Button {...props} />)(
 );
 
 export const CustomBox = styled((props) => <Box {...props} />)(({ theme }) => ({
-  width: "50px",
-  height: "50px",
+  width: "55px",
+  height: "55px",
   backgroundColor: "#b9b7b6",
   borderRadius: "12px",
   margin: "0 5px 10px 10px",

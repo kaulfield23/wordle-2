@@ -1,6 +1,5 @@
 import { Box } from "@mui/system";
 import React from "react";
-import { CenterBox } from "../UI/customMUI/CustomMUI";
 
 const Info = () => {
   return (

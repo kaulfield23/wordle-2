@@ -22,11 +22,6 @@ const Register = ({ rightWord, recordedTime, userId }) => {
         alert(`Type less than 8 characters for the name`);
         return;
       }
-      console.log(
-        typeof recordedTime.time,
-        typeof recordedTime.ten,
-        "yeyeyeyey"
-      );
       const usersScore = {
         name: userName.toUpperCase(),
         playTime: { time: recordedTime.time, ten: recordedTime.ten },
@@ -117,7 +112,7 @@ const Register = ({ rightWord, recordedTime, userId }) => {
             >
               <Link to="/highscore" state={{ playId: userId }}>
                 <Box textAlign="center">
-                  <h1>Check out my rank</h1>
+                  <h1>Registered!</h1>
                 </Box>
                 <CustomButton variant="contained" sx={{ m: 2 }}>
                   <CustomText>Check out my rank</CustomText>
