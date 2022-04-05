@@ -112,12 +112,8 @@ router.get("/highscore/:userId/sort", async(req, res) => {
     if (wordLength === 3 && wordType === "all") {
         sortFuncTopTen(scores, playerId, res)
     } else {
-
         sortFuncAll(scores, playerId, wordLength, wordType, res)
     }
-
-
-
 });
 
 export default router;

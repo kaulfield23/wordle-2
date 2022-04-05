@@ -15,14 +15,6 @@ export const sortFuncAll = (scores, playerId, wordLength, wordType, res) => {
     });
     const userRank = filtered.findIndex((item) => item.userId === playerId)
 
-    // let result = `<h1> There is no result </h1>`
-    // if (!filtered) {
-    //     res.render('highscore', {
-    //         result
-    //     })
-    // } else {
-
-    // }
     res.render('highscore', {
         highscore: highscoreElem(filtered),
         rankOfUser: userRank + 1
