@@ -12,6 +12,10 @@ import {
     highscoreElem
 } from "../functions/highscoreElem.js";
 
+import {
+    sortFuncAll,
+    sortFuncTopTen
+} from "../functions/sortFunc.js";
 
 const router = express.Router();
 
@@ -79,23 +83,40 @@ router.post("/games/:userId/highscore", async(req, res) => {
 
 })
 
-router.get("/highscore/:userId", async(req, res) => {
+// router.get("/highscore/:userId/", async(req, res) => {
+//     const playerId = req.params.userId
+//     const scores = await Highscore.find();
+//     scores.sort((a, b) => a.timer - b.timer);
+//     if (playerId) {
+//         const userRank = scores.findIndex((item) => item.userId === playerId)
+//         let topTen = scores.splice(0, 10)
+//         res.render('highscore', {
+//             highscore: highscoreElem(topTen),
+//             rankOfUser: userRank + 1
+//         })
+//     } else {
+//         let topTen = scores.splice(0, 10)
+//         res.render('highscore', {
+//             highscore: highscoreElem(topTen)
+//         })
+//     }
+
+// });
+
+router.get("/highscore/:userId/sort", async(req, res) => {
+    const wordLength = parseInt(req.query.wordLength);
+    const wordType = req.query.type
     const playerId = req.params.userId
+
     const scores = await Highscore.find();
-    scores.sort((a, b) => a.timer - b.timer);
-    if (playerId) {
-        const userRank = scores.findIndex((item) => item.userId === playerId)
-        let topTen = scores.splice(0, 10)
-        res.render('highscore', {
-            highscore: highscoreElem(topTen),
-            rankOfUser: userRank + 1
-        })
+    if (wordLength === 3 && wordType === "all") {
+        sortFuncTopTen(scores, playerId, res)
     } else {
-        let topTen = scores.splice(0, 10)
-        res.render('highscore', {
-            highscore: highscoreElem(topTen)
-        })
+
+        sortFuncAll(scores, playerId, wordLength, wordType, res)
     }
+
+
 
 });
 

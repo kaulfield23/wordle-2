@@ -5,15 +5,12 @@ import {
 } from 'express-handlebars';
 
 import path from "path"
-import {
-    resourceLimits
-} from 'worker_threads';
+
 const __dirname = path.resolve();
 
 const app = express();
 
 app.use(express.json())
-    // app.engine('handlebars', engine());
 app.engine('handlebars', engine({
     helpers: {
         math: function(lvalue, operator, rvalue) {
