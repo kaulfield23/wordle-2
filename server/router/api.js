@@ -36,7 +36,6 @@ router.post("/games", async(req, res) => {
     res.status(201).json({
         id: game.id,
     });
-    console.log(`correct word : `, game.correctWord)
 });
 
 router.post("/games/:userId/guess", async(req, res) => {

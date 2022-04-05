@@ -24,7 +24,6 @@ const HighscorePage = () => {
 
   useEffect(() => {
     const getSortedHighscore = async () => {
-      console.log("hey");
       const response = await fetch(
         ` /api/highscore/${id}/sort?wordLength=${wordLength}&type=${wordType}`
       );

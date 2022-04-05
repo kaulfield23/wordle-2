@@ -22,7 +22,6 @@ const ColorBoxes = ({ item }) => {
     boxSize = `45px`;
   }
 
-  console.log("color boxes");
   if (item.result === "Correct") {
     return (
       <CustomBox
