@@ -13,7 +13,8 @@ import { Link } from "react-router-dom";
 const Register = ({ rightWord, recordedTime, userId }) => {
   const [userName, setUserName] = useState("");
   const [registered, setRegistered] = useState(false);
-  const [check, setCheck] = useState(false);
+  const [boxAnimation, setBoxAnimation] = useState(false);
+
   const sendHighScore = async (e) => {
     e.preventDefault();
 
@@ -33,7 +34,7 @@ const Register = ({ rightWord, recordedTime, userId }) => {
       });
       setUserName("");
       setRegistered(true);
-      setCheck(true);
+      setBoxAnimation(true);
     }
   };
 
@@ -100,7 +101,7 @@ const Register = ({ rightWord, recordedTime, userId }) => {
         </>
       ) : (
         <CenterBox>
-          <Zoom in={check}>
+          <Zoom in={boxAnimation}>
             <Box
               sx={{
                 padding: "100px 40px",

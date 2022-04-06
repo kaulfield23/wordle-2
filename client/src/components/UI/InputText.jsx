@@ -4,6 +4,7 @@ import { CustomText, CenterBox } from "../UI/customMUI/CustomMUI";
 
 const InputText = ({ sendGuess, word }) => {
   const [guessingWord, setGuessingWord] = useState("");
+
   const sendWord = async (input) => {
     input.preventDefault();
     if (input.type === "click") {

@@ -13,8 +13,8 @@ import {
 } from "../functions/highscoreElem.js";
 
 import {
-    sortFuncAll,
-    sortFuncTopTen
+    sortAll,
+    sortTopTen
 } from "../functions/sortFunc.js";
 
 const router = express.Router();
@@ -24,8 +24,9 @@ const GAMES = [];
 router.post("/games", async(req, res) => {
     const wordLength = parseInt(req.query.wordlength);
     const wordType = req.query.type;
-    const words = await fetchWords();
-    const filteredWord = chooseWord(words, wordLength, wordType);
+    const wordList = await fetchWords();
+
+    const filteredWord = chooseWord(wordList, wordLength, wordType);
     const game = {
         correctWord: filteredWord,
         guesses: [],
@@ -75,7 +76,7 @@ router.post("/games/:userId/highscore", async(req, res) => {
         const score = new Highscore(userScore)
         score.save()
         res.send({
-            msg: userScore
+            msg: "hello"
         })
     } else {
         res.status(404).end()
@@ -91,14 +92,14 @@ router.get("/highscore/sorted", async(req, res) => {
     const scores = await Highscore.find();
     if (wordLength === 3 && wordType === "all") {
 
-        const filtered = sortFuncTopTen(scores, playerId)
+        const filtered = sortTopTen(scores, playerId)
         res.render('highscore', {
             highscore: highscoreElem(filtered.topTen),
             rankOfUser: filtered.userRank + 1
         })
 
     } else {
-        const filtered = sortFuncAll(scores, playerId, wordLength, wordType)
+        const filtered = sortAll(scores, playerId, wordLength, wordType)
 
         res.render('highscore', {
             highscore: highscoreElem(filtered.scores),

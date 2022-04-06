@@ -10,6 +10,7 @@ const HighscorePage = () => {
   const [wordType, setwordType] = useState("all");
   let id;
 
+  //get player's id when from register page
   if (location.state) {
     id = location.state.playId;
   }

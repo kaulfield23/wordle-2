@@ -40,6 +40,7 @@ const verifyWord = (inputGuessingWord, inputCorrectWord) => {
     }
 
     guessingWord
+    //get rid of repeating character
         .filter((item, idx, array) => array.indexOf(item) === idx)
         .forEach((character) => {
             //check duplicated characters in guessing word

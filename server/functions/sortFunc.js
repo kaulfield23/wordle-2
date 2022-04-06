@@ -1,4 +1,4 @@
-export const sortFuncAll = (scores, playerId, wordLength, wordType) => {
+export const sortAll = (scores, playerId, wordLength, wordType) => {
 
     const filtered = scores.sort((a, b) => a.timer - b.timer).filter((item) => {
         if (wordType === "all") {
@@ -17,7 +17,7 @@ export const sortFuncAll = (scores, playerId, wordLength, wordType) => {
     }
 }
 
-export const sortFuncTopTen = (scores, playerId) => {
+export const sortTopTen = (scores, playerId) => {
     scores.sort((a, b) => a.timer - b.timer);
     if (playerId) {
         const userRank = scores.findIndex((item) => item.userId === playerId)

@@ -29,7 +29,7 @@ const ConfigureGame = (props) => {
   const checkValues = (e) => {
     if (!wordLimit) {
       e.preventDefault();
-      return alert("Set word limit for playing!");
+      return alert("Set the word limit for playing!");
     }
     props.wordType({ limit: wordLimit, type: wordType });
   };

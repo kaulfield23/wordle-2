@@ -50,8 +50,6 @@ const Wordle = ({ word }) => {
     setIsPlaying(false);
   };
 
-  let boxSize;
-
   useEffect(() => {
     function handleSize() {
       setWidth(window.innerWidth);
@@ -64,10 +62,13 @@ const Wordle = ({ word }) => {
     };
   }, [setWidth]);
 
+  //change boxes size when width is small
+  let boxSize;
   if (width <= 700) {
     boxSize = `45px`;
   }
 
+  //first grey boxes
   const setFirstBox = () => {
     let generateBoxes = Array(word.limit).fill("@");
     return generateBoxes.map((item, idx) => (
@@ -79,6 +80,7 @@ const Wordle = ({ word }) => {
     ));
   };
 
+  //catch time when user finishes the game and send it to register page
   const catchMin = (value) => {
     if (!notFinished) {
       setTen(value);
