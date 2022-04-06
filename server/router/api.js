@@ -36,6 +36,7 @@ router.post("/games", async(req, res) => {
     res.status(201).json({
         id: game.id,
     });
+    console.log('correct word ', game.correctWord)
 });
 
 router.post("/games/:userId/guess", async(req, res) => {
@@ -82,36 +83,27 @@ router.post("/games/:userId/highscore", async(req, res) => {
 
 })
 
-// router.get("/highscore/:userId/", async(req, res) => {
-//     const playerId = req.params.userId
-//     const scores = await Highscore.find();
-//     scores.sort((a, b) => a.timer - b.timer);
-//     if (playerId) {
-//         const userRank = scores.findIndex((item) => item.userId === playerId)
-//         let topTen = scores.splice(0, 10)
-//         res.render('highscore', {
-//             highscore: highscoreElem(topTen),
-//             rankOfUser: userRank + 1
-//         })
-//     } else {
-//         let topTen = scores.splice(0, 10)
-//         res.render('highscore', {
-//             highscore: highscoreElem(topTen)
-//         })
-//     }
-
-// });
-
-router.get("/highscore/:userId/sort", async(req, res) => {
+router.get("/highscore/sorted", async(req, res) => {
     const wordLength = parseInt(req.query.wordLength);
     const wordType = req.query.type
-    const playerId = req.params.userId
+    const playerId = req.query.id
 
     const scores = await Highscore.find();
     if (wordLength === 3 && wordType === "all") {
-        sortFuncTopTen(scores, playerId, res)
+
+        const filtered = sortFuncTopTen(scores, playerId)
+        res.render('highscore', {
+            highscore: highscoreElem(filtered.topTen),
+            rankOfUser: filtered.userRank + 1
+        })
+
     } else {
-        sortFuncAll(scores, playerId, wordLength, wordType, res)
+        const filtered = sortFuncAll(scores, playerId, wordLength, wordType)
+
+        res.render('highscore', {
+            highscore: highscoreElem(filtered.scores),
+            rankOfUser: filtered.userRank + 1
+        })
     }
 });
 

@@ -18,7 +18,7 @@ const ConfigureGame = (props) => {
   const [wordLimit, setWordLimit] = useState("");
   const [wordType, setWordType] = useState("repeating");
 
-  const handleChange = (e) => {
+  const onChangeWordLimit = (e) => {
     setWordLimit(e.target.value);
   };
 
@@ -70,7 +70,7 @@ const ConfigureGame = (props) => {
             id="howManyLetters"
             value={wordLimit}
             label="How many letters?"
-            onChange={handleChange}
+            onChange={onChangeWordLimit}
           >
             <MenuItem value={4}>Play with 4-letter words</MenuItem>
             <MenuItem value={5}>Play with 5-letter words</MenuItem>

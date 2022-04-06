@@ -13,19 +13,11 @@ const HighscorePage = () => {
   if (location.state) {
     id = location.state.playId;
   }
-  // useEffect(() => {
-  //   const getHighScore = async () => {
-  //     const response = await fetch(`/api/highscore/${id}`);
-  //     const resBody = await response.text();
-  //     setBody(resBody);
-  //   };
-  //   getHighScore();
-  // }, [id]);
 
   useEffect(() => {
     const getSortedHighscore = async () => {
       const response = await fetch(
-        ` /api/highscore/${id}/sort?wordLength=${wordLength}&type=${wordType}`
+        ` /api/highscore/sorted?id=${id}&wordLength=${wordLength}&type=${wordType}`
       );
       const resBody = await response.text();
       setBody(resBody);
