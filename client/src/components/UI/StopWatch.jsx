@@ -12,6 +12,10 @@ const StopWatch = ({ isPlaying, catchMin, catchTime }) => {
         setTimer((prev) => prev + 1);
       }, 1000);
     }
+    //increase ten when seconds reaches to 10
+    if (timer % 10 === 0 && timer !== 0) {
+      setTen((prev) => prev + 1);
+    }
 
     return () => {
       clearInterval(interval);
@@ -30,10 +34,6 @@ const StopWatch = ({ isPlaying, catchMin, catchTime }) => {
 
   useEffect(() => {
     catchTime(timer);
-    //increase ten when seconds reaches to 10
-    if (timer % 10 === 0 && timer !== 0) {
-      setTen((prev) => prev + 1);
-    }
   }, [timer, catchTime]);
 
   return (

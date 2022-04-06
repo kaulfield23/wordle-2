@@ -39,7 +39,7 @@ const Wordle = ({ word }) => {
     });
     const body = await response.json();
 
-    setGuesses([...guesses, body].reverse());
+    setGuesses([...guesses, body]);
 
     if (body.every((item) => item.result === "Correct")) {
       setNotFinished(false);
@@ -126,7 +126,7 @@ const Wordle = ({ word }) => {
                   </Box>
                 </Zoom>
 
-                {guesses.map((guess, idx) => (
+                {[...guesses].reverse().map((guess, idx) => (
                   <Box key={idx} sx={{ display: "flex" }}>
                     {guess.map((item, idx) => (
                       <ColorBoxes item={item} key={idx} />
@@ -137,7 +137,7 @@ const Wordle = ({ word }) => {
             </>
           ) : (
             <Register
-              rightWord={guesses[0]}
+              rightWord={guesses[guesses.length - 1]}
               recordedTime={{ time: timer, ten: ten }}
               userId={id}
             />
