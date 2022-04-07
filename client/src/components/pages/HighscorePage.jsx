@@ -4,37 +4,37 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { CenterBox, CustomText } from "../UI/customMUI/CustomMUI";
 
 const HighscorePage = () => {
-  const location = useLocation();
-  const [body, setBody] = useState();
-  const [wordLength, setwordLength] = useState(3);
-  const [wordType, setwordType] = useState("all");
-  let id;
+  // const location = useLocation();
+  // const [body, setBody] = useState();
+  // const [wordLength, setwordLength] = useState(3);
+  // const [wordType, setwordType] = useState("all");
+  // let id;
 
-  //get player's id from register page
-  if (location.state) {
-    id = location.state.playId;
-  }
+  // //get player's id from register page
+  // if (location.state) {
+  //   id = location.state.playId;
+  // }
 
-  useEffect(() => {
-    const getSortedHighscore = async () => {
-      const response = await fetch(
-        ` /api/highscore/sorted?id=${id}&wordLength=${wordLength}&type=${wordType}`
-      );
-      const resBody = await response.text();
-      setBody(resBody);
-    };
-    getSortedHighscore();
-  }, [wordLength, wordType, id]);
+  // useEffect(() => {
+  //   const getSortedHighscore = async () => {
+  //     const response = await fetch(
+  //       ` /api/highscore/sorted?id=${id}&wordLength=${wordLength}&type=${wordType}`
+  //     );
+  //     const resBody = await response.text();
+  //     setBody(resBody);
+  //   };
+  //   getSortedHighscore();
+  // }, [wordLength, wordType, id]);
 
-  const handleWordLength = (value) => {
-    setwordLength(value);
-  };
-  const handleWordType = (value) => {
-    setwordType(value);
-  };
+  // const handleWordLength = (value) => {
+  //   setwordLength(value);
+  // };
+  // const handleWordType = (value) => {
+  //   setwordType(value);
+  // };
   return (
     <>
-      <CenterBox sx={{ maxWidth: 300, margin: "50px auto 0 auto" }}>
+      {/* <CenterBox sx={{ maxWidth: 300, margin: "50px auto 0 auto" }}>
         <CustomText sx={{ color: "#6d4c41", width: 150 }}>Sort : </CustomText>
         <FormControl fullWidth sx={{ marginRight: 2 }}>
           <InputLabel id="wordLength">Word length</InputLabel>
@@ -66,7 +66,7 @@ const HighscorePage = () => {
           </Select>
         </FormControl>
       </CenterBox>
-      <div dangerouslySetInnerHTML={{ __html: body }} />
+      <div dangerouslySetInnerHTML={{ __html: body }} /> */}
     </>
   );
 };
