@@ -1,26 +1,26 @@
 import express from "express";
-import fetchWords from "./wordlists.js";
-import chooseWord from "../functions/chooseWord.js";
+import fetchWords from "../wordle/fetchWordlists.js";
+import chooseWord from "../wordle/chooseWord.js";
 import {
     v4
 } from "uuid";
-import verifyWord from "../functions/verifyWord.js";
+import verifyWord from "../wordle/verifyWord.js";
 import {
     Highscore
 } from "../db.js"
 import {
     highscoreElem
-} from "../functions/highscoreElem.js";
+} from "../wordle/highscoreElem.js";
 
 import {
     sortAll,
     sortTopTen
-} from "../functions/sortFunc.js";
+} from "../wordle/sortFunc.js";
 
 const router = express.Router();
 
 const GAMES = [];
-
+//give user Id for start the game and save game info to GAMES
 router.post("/games", async(req, res) => {
     const wordLength = parseInt(req.query.wordlength);
     const wordType = req.query.type;
@@ -40,6 +40,7 @@ router.post("/games", async(req, res) => {
     console.log('correct word ', game.correctWord)
 });
 
+//compare user's guessing word and return result
 router.post("/games/:userId/guess", async(req, res) => {
     let result;
     let usersGuess = req.body.guessWord;
@@ -53,6 +54,7 @@ router.post("/games/:userId/guess", async(req, res) => {
     }
 });
 
+//get user's game name and playtime, save it to highscore
 router.post("/games/:userId/highscore", async(req, res) => {
     const id = req.params.userId;
     const usersGame = GAMES.find((savedOne) => savedOne.id === id)
@@ -84,6 +86,7 @@ router.post("/games/:userId/highscore", async(req, res) => {
 
 })
 
+//give user highscore lists when user has id, return user's rank as well
 router.get("/highscore/sorted", async(req, res) => {
     const wordLength = parseInt(req.query.wordLength);
     const wordType = req.query.type
