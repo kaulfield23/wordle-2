@@ -8,7 +8,7 @@ import GiveUpMenu from "../UI/GiveUpMenu";
 import ColorBoxes from "../UI/ColorBoxes";
 import InputText from "../UI/InputText";
 
-const Wordle = ({ word }) => {
+const Wordle = ({ word, gaveUp }) => {
   const [id, setId] = useState();
   const [guesses, setGuesses] = useState([]);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -92,6 +92,11 @@ const Wordle = ({ word }) => {
     }
   };
 
+  //send true to app.js so it knows user gave up
+  const userGaveUp = (value) => {
+    gaveUp(value);
+  };
+
   return (
     <>
       {isPlaying ? (
@@ -144,7 +149,7 @@ const Wordle = ({ word }) => {
           )}
         </>
       ) : (
-        <GiveUpMenu />
+        <GiveUpMenu userGaveUp={userGaveUp} />
       )}
     </>
   );

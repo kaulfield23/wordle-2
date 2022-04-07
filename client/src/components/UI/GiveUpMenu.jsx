@@ -1,9 +1,15 @@
 import { Box } from "@mui/system";
 import { Link } from "react-router-dom";
 import { CustomText, CustomButton } from "./customMUI/CustomMUI";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const GiveUpMenu = () => {
+const GiveUpMenu = ({ userGaveUp }) => {
+  const [giveUp, setGiveUp] = useState(false);
+
+  useEffect(() => {
+    userGaveUp(giveUp);
+  }, [giveUp, userGaveUp]);
+
   return (
     <>
       <Box
@@ -21,9 +27,7 @@ const GiveUpMenu = () => {
           <CustomButton
             variant="contained"
             sx={{ backgroundColor: "#65c2a6" }}
-            onClick={() => {
-              window.location.reload();
-            }}
+            onClick={() => setGiveUp(!giveUp)}
           >
             <CustomText>Try a new game</CustomText>
           </CustomButton>

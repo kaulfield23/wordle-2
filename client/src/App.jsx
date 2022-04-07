@@ -12,10 +12,16 @@ const App = () => {
       setWordTypeForGame(value);
     }
   };
+
+  const userGaveUp = (value) => {
+    if (value === true) {
+      setIsReadyToPlay(false);
+    }
+  };
   return (
     <>
       {isReadyToPlay ? (
-        <Wordle word={wordTypeForGame} />
+        <Wordle word={wordTypeForGame} gaveUp={userGaveUp} />
       ) : (
         <ConfigureGame wordType={checkWordType} />
       )}
