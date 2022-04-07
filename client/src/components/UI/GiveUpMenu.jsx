@@ -1,5 +1,4 @@
 import { Box } from "@mui/system";
-import { Link } from "react-router-dom";
 import { CustomText, CustomButton } from "./customMUI/CustomMUI";
 import React, { useState, useEffect } from "react";
 
@@ -23,25 +22,23 @@ const GiveUpMenu = ({ userGaveUp }) => {
           margin: "0 auto",
         }}
       >
-        <Link to="/">
-          <CustomButton
-            variant="contained"
-            sx={{ backgroundColor: "#65c2a6" }}
-            onClick={() => setGiveUp(!giveUp)}
-          >
-            <CustomText>Try a new game</CustomText>
-          </CustomButton>
-        </Link>
-        <Link to="/highscore">
-          <CustomButton variant="contained" color="secondary">
+        <CustomButton
+          variant="contained"
+          sx={{ backgroundColor: "#65c2a6" }}
+          onClick={() => setGiveUp(!giveUp)}
+        >
+          <CustomText>Try a new game</CustomText>
+        </CustomButton>
+
+        <CustomButton variant="contained" color="secondary">
+          <a href="http://localhost:5080/highscores">
             <CustomText>Checkout highscores</CustomText>
-          </CustomButton>
-        </Link>
-        <Link to="/info">
-          <CustomButton variant="contained" sx={{ backgroundColor: "#f8d486" }}>
-            <CustomText>Information about Wordle</CustomText>
-          </CustomButton>
-        </Link>
+          </a>
+        </CustomButton>
+
+        <CustomButton variant="contained" sx={{ backgroundColor: "#f8d486" }}>
+          <CustomText>Information about Wordle</CustomText>
+        </CustomButton>
       </Box>
     </>
   );

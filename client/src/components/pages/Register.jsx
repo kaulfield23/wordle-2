@@ -8,7 +8,7 @@ import {
   CenterHorizon,
 } from "../UI/customMUI/CustomMUI";
 import ColorBoxes from "../UI/ColorBoxes";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const Register = ({ rightWord, recordedTime, userId }) => {
   const [userName, setUserName] = useState("");
@@ -111,14 +111,14 @@ const Register = ({ rightWord, recordedTime, userId }) => {
                 maxWidth: "500px",
               }}
             >
-              <Link to="/highscore" state={{ playId: userId }}>
-                <Box textAlign="center">
-                  <h1>Registered!</h1>
-                </Box>
-                <CustomButton variant="contained" sx={{ m: 2 }}>
+              <Box textAlign="center">
+                <h1>Registered!</h1>
+              </Box>
+              <CustomButton variant="contained" sx={{ m: 2 }}>
+                <a href="http://localhost:5080/highscores">
                   <CustomText>Check out my rank</CustomText>
-                </CustomButton>
-              </Link>
+                </a>
+              </CustomButton>
             </Box>
           </Zoom>
         </CenterBox>

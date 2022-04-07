@@ -1,12 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import Info from "./components/pages/Info";
-import Wordle from "./components/pages/Wordle";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavbarMUI from "./components/UI/NavbarMUI";
 import { createTheme, ThemeProvider } from "@mui/material";
-import HighscorePage from "./components/pages/HighscorePage";
 
 const theme = createTheme({
   palette: {
@@ -21,19 +17,12 @@ const theme = createTheme({
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <NavbarMUI />
-        <div id="main">
-          <Routes>
-            <Route exact path="/" element={<App />} />
-            <Route exact path="/info" element={<Info />} />
-            <Route exact path="/highscore" element={<HighscorePage />} />
-            <Route exact path="/wordle" element={<Wordle />} />
-          </Routes>
-        </div>
-      </ThemeProvider>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <NavbarMUI />
+      <div id="main">
+        <App />
+      </div>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

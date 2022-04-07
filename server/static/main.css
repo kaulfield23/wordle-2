@@ -1,0 +1,166 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family: "Nunito";
+    color: "#6d4c41";
+}
+
+body {
+    height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+    color: #6d4c41;
+}
+
+.correctBox {
+    animation: fadein 1.5s ease-in;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.wholeScores {
+    margin: 30px 10px;
+}
+
+.score {
+    background-color: #fce2ac;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 500px;
+}
+
+#highscore {
+    text-align: center;
+    margin: 20px 0 50px 0;
+    font-family: "Press start 2P";
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
+}
+
+#userName {
+    font-family: "press start 2p";
+    width: 100px;
+    padding-left: 3px;
+}
+
+.gameInfo {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 240);
+    padding: 5px;
+    border-radius: 10px;
+    width: 100px;
+}
+
+#rank {
+    text-align: center;
+    width: 25px;
+    color: #9e74ff;
+    margin-right: 5px;
+    background-color: rgb(255, 254, 254);
+    padding: 4px;
+    border-radius: 10px;
+}
+
+.correctWord {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.correctWordList {
+    display: flex;
+    align-items: center;
+}
+
+#word {
+    margin-right: 3px;
+}
+
+.rightWordsBox {
+    background-color: #7ad68e;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    margin: 2px;
+    border: solid 3px #6d4c41;
+    border-radius: 10px;
+}
+
+.gap {
+    flex-grow: 5;
+}
+
+.scoreItem {
+    flex-grow: 1;
+}
+
+#rankFrame {
+    background-color: #fcbed3;
+    border-radius: 10px;
+    max-width: 500px;
+    margin: 30px auto;
+    border: 4px solid #6d4c41;
+    padding: 5px;
+}
+
+#showRank {
+    text-align: center;
+    max-width: 500px;
+    border: 4px solid #6d4c41;
+    border-radius: 10px;
+    color: #6d4c41;
+}
+
+#rankNum {
+    color: #9e74ff;
+}
+
+@media screen and (max-width: 800px) {
+    #wordType {
+        font-size: 16px;
+    }
+    #word {
+        font-size: 14px;
+    }
+    .gameInfo {
+        font-size: 13px;
+    }
+    #userName {
+        font-size: 18px;
+    }
+    #rank {
+        font-size: 20px;
+    }
+    #highscore {
+        font-size: 20px;
+    }
+    .rightWordsBox {
+        width: 20px;
+        height: 20px;
+        font-size: 14px;
+    }
+    .correctWord {
+        margin-top: 10px;
+    }
+}
+
+#noResult {
+    margin-top: 150px;
+    text-align: center;
+}

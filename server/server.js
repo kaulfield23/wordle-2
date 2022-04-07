@@ -1,12 +1,20 @@
+import path from "path"
+import {
+    fileURLToPath
+} from "url"
+
 import express from 'express';
 import api from './router/api.js'
+import pages from './router/pages.js'
 import {
     engine
 } from 'express-handlebars';
 
-import path from "path"
 
-const __dirname = path.resolve();
+const __filename = fileURLToPath(
+    import.meta.url);
+console.log(`filename ${__filename}`)
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -34,8 +42,16 @@ app.engine('handlebars', engine({
     }
 }));
 app.set('view engine', 'handlebars');
-app.set('views', `${__dirname}/server/templates/`);
+
+console.log(__dirname)
+console.log(`templates = ${path.join(__dirname, "/templates")}`)
+app.set('views', path.join(__dirname, "/templates"));
+
+console.log(`static = ${path.join(__dirname, "/static")}`)
+app.use(express.static(`${path.join(__dirname, "/static")}`));
+
 app.use('/api', api);
+app.use('/', pages);
 
 const port = process.env.PORT || 5080;
 

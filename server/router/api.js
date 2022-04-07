@@ -87,21 +87,8 @@ router.post("/games/:userId/highscore", async(req, res) => {
 })
 
 router.get("/highscores", async(req, res) => {
-    console.info("called");
-    res.send(`
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <button onclick="history.back()">hello world</button>
-</body>
-</html>    
-`);
+    console.info("yes");
+    res.render('highscore');
 })
 
 //give user highscore lists when user has id, return user's rank as well

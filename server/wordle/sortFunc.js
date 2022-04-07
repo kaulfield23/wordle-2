@@ -17,14 +17,22 @@ export const sortAll = (scores, playerId, wordLength, wordType) => {
     }
 }
 
-export const sortTopTen = (scores, playerId) => {
+// export const sortTopTen = (scores, playerId) => {
+//     scores.sort((a, b) => a.timer - b.timer);
+//     if (playerId) {
+//         const userRank = scores.findIndex((item) => item.userId === playerId)
+//         let topTen = scores.splice(0, 10)
+//         return {
+//             userRank: userRank,
+//             topTen: topTen
+//         }
+//     }
+// }
+export const sortTopTen = (scores) => {
     scores.sort((a, b) => a.timer - b.timer);
-    if (playerId) {
-        const userRank = scores.findIndex((item) => item.userId === playerId)
-        let topTen = scores.splice(0, 10)
-        return {
-            userRank: userRank,
-            topTen: topTen
-        }
+    let topTen = scores.splice(0, 10)
+    return {
+        topTen: topTen
     }
+
 }
