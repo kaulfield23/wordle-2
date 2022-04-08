@@ -78,7 +78,6 @@ const Info = () => {
           culpa qui officia deserunt mollit anim id est laborum.
         </h3>
       </Box>
-      <a href="http://localhost:5080/api/highscores">what</a>
     </>
   );
 };

@@ -164,3 +164,65 @@ h3 {
     margin-top: 150px;
     text-align: center;
 }
+
+.info {
+    text-align: center;
+    margin: 80px auto 10px auto;
+}
+
+.boxInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.infoBox {
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    margin-left: 4px;
+}
+
+.greenBox {
+    background-color: #65c2a6;
+}
+
+.yellowBox {
+    background-color: #f8d486;
+}
+
+.redBox {
+    background-color: #ec8585;
+}
+
+#infoDesc {
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.navDiv {
+    display: flex;
+    padding: 23px;
+    background-color: #65c2a6;
+    justify-content: center;
+}
+
+.navDiv a {
+    font-family: "Nunito";
+    font-weight: bold;
+}
+
+.menuName {
+    color: white;
+    padding: 0 22px;
+    font-size: 20px;
+}
+
+.sort {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

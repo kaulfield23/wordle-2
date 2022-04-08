@@ -17,6 +17,9 @@ const Wordle = ({ word, gaveUp }) => {
   const [timer, setTimer] = useState(null);
   const [width, setWidth] = useState();
 
+  if (!id) {
+    localStorage.removeItem("userId");
+  }
   useEffect(() => {
     const getId = async () => {
       const response = await fetch(
@@ -27,6 +30,7 @@ const Wordle = ({ word, gaveUp }) => {
       );
       const body = await response.json();
       setId(body.id);
+      localStorage.setItem("userId", body.id);
     };
     getId();
   }, [word.limit, word.type]);

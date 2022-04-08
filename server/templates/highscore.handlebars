@@ -1,14 +1,26 @@
 <div class="wholeScores">
   <h1 id="highscore">🧁Highscore</h1>
-
-  <h1>Sort</h1>
-  <div class="wordLength" style="width:200px;">
-    <select>
-      <option value="0">All types</option>
-      <option value="1">4 letter words</option>
-      <option value="2">5 letter words</option>
-      <option value="3">6 letter words</option>
-    </select>
+  <div class="sort">
+    <h1>Sort</h1>
+    <div>
+      <div class="wordLimit" style="width:200px;">
+        <select>
+          <option value="3" selected>All letters</option>
+          <option value="4">4 letter words</option>
+          <option value="5">5 letter words</option>
+          <option value="6">6 letter words</option>
+        </select>
+      </div>
+      <div class="wordTyp" style="width:200px;">
+        <select>
+          <option value="all">All types</option>
+          <option value="repeating">Repeat</option>
+          <option value="unique">Unique</option>
+        </select>
+      </div>
+      <button id="sortBtn">Sort</button>
+      <div>{{requestParameter.wordLength}}</div>
+    </div>
   </div>
   {{#if rankOfUser}}
     <div id="rankFrame">
@@ -17,7 +29,8 @@
           {{rankOfUser}}
         </span>
       </h1>
-    </div>{{/if}}
+    </div>
+  {{/if}}
   {{#each highscore}}
     <div class="score">
       <div class="userInfo">

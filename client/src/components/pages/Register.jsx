@@ -8,13 +8,13 @@ import {
   CenterHorizon,
 } from "../UI/customMUI/CustomMUI";
 import ColorBoxes from "../UI/ColorBoxes";
-// import { Link } from "react-router-dom";
 
 const Register = ({ rightWord, recordedTime, userId }) => {
   const [userName, setUserName] = useState("");
   const [registered, setRegistered] = useState(false);
   const [boxAnimation, setBoxAnimation] = useState(false);
 
+  const id = localStorage.getItem("userId");
   const sendHighScore = async (e) => {
     e.preventDefault();
 
@@ -115,7 +115,7 @@ const Register = ({ rightWord, recordedTime, userId }) => {
                 <h1>Registered!</h1>
               </Box>
               <CustomButton variant="contained" sx={{ m: 2 }}>
-                <a href="http://localhost:5080/highscores">
+                <a href={`/highscores?id=${id}`}>
                   <CustomText>Check out my rank</CustomText>
                 </a>
               </CustomButton>
