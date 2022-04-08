@@ -12,18 +12,11 @@ import {
 } from "@mui/material";
 
 const NavbarMUI = () => {
-  const handle = (e) => {
-    e.preventDefault();
-    console.log("hello");
-    fetch("/api/highscores")
-      .then((response) => response.text())
-      .then((text) => console.log(text));
-  };
-
   return (
     <>
       <a href="/">Home</a>
-      <a href="http://localhost:5080/highscores">Highscore</a>
+      <a href="/highscores">Highscores</a>
+      <a href="/info">Info</a>
     </>
   );
 };
