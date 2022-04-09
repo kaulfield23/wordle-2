@@ -30,14 +30,24 @@ const GiveUpMenu = ({ userGaveUp }) => {
           <CustomText>Try a new game</CustomText>
         </CustomButton>
 
-        <CustomButton variant="contained" color="secondary">
-          <a href="http://localhost:5080/highscores">
+        <CustomButton
+          variant="contained"
+          color="secondary"
+          onClick={() => localStorage.removeItem("userId")}
+        >
+          <a href="/highscores">
             <CustomText>Checkout highscores</CustomText>
           </a>
         </CustomButton>
 
-        <CustomButton variant="contained" sx={{ backgroundColor: "#f8d486" }}>
-          <CustomText>Information about Wordle</CustomText>
+        <CustomButton
+          variant="contained"
+          sx={{ backgroundColor: "#f8d486" }}
+          onClick={() => localStorage.removeItem("userId")}
+        >
+          <a href="/info">
+            <CustomText>Information about Wordle</CustomText>
+          </a>
         </CustomButton>
       </Box>
     </>

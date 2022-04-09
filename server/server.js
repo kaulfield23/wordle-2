@@ -12,7 +12,6 @@ import {
 
 const __filename = fileURLToPath(
     import.meta.url);
-console.log(`filename ${__filename}`);
 const __dirname = path.dirname(__filename);
 
 const app = express();
@@ -22,6 +21,7 @@ app.engine(
     "handlebars",
     engine({
         helpers: {
+            //to give rank for highscore with index
             math: function(lvalue, operator, rvalue) {
                 lvalue = parseFloat(lvalue);
                 rvalue = parseFloat(rvalue);
@@ -33,6 +33,7 @@ app.engine(
                     "%": lvalue % rvalue,
                 }[operator];
             },
+            //to give green boxes with correct words
             strFunc: function(word) {
                 let result = "";
                 for (let i = 0; i < word.length; i++) {
@@ -49,7 +50,7 @@ app.set("view engine", "handlebars");
 app.set("views", path.join(__dirname, "/templates"));
 
 app.use(express.static(`${path.join(__dirname, "/public")}`));
-app.use(express.static(`${path.join(__dirname, "/select")}`));
+app.use(express.static(`${path.join(__dirname, "/statics")}`));
 
 app.use("/api", api);
 app.use("/", pages);

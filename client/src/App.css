@@ -165,42 +165,27 @@ h3 {
     text-align: center;
 }
 
-.info {
-    text-align: center;
-    margin: 80px auto 10px auto;
-}
-
-.boxInfo {
+.sort {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 20px;
 }
 
-.infoBox {
-    width: 50px;
-    height: 50px;
-    border-radius: 20px;
-    margin-left: 4px;
-}
-
-.greenBox {
-    background-color: #65c2a6;
-}
-
-.yellowBox {
-    background-color: #f8d486;
-}
-
-.redBox {
-    background-color: #ec8585;
-}
-
-#infoDesc {
-    max-width: 500px;
+.sortContainer {
     display: flex;
-    justify-content: center;
-    margin: 20px auto;
+}
+
+.wordSelect {
+    margin: 5px;
+}
+
+#sortBtn {
+    background-color: #6d4c41;
+    border: none;
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+    font-family: "nunito";
+    cursor: pointer;
 }
 
 .navDiv {
@@ -219,10 +204,4 @@ h3 {
     color: white;
     padding: 0 22px;
     font-size: 20px;
-}
-
-.sort {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }

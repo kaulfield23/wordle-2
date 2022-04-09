@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wordle</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;900&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <nav>
+        <div class="navDiv">
+            <a href="/" class="menuName">Home</a>
+            <a class="menuName highscorePage">Highscore</a>
+            <a href="/info" class="menuName">Info</a>
+        </div>
+    </nav>
+    <div class="info">
+        <h1>🧁wordle rules</h1>
+
+        <div class="boxInfo">
+            <div>
+                <h2>Correct word :</h2>
+            </div>
+            <div class="greenBox infoBox"></div>
+        </div>
+
+        <div class="boxInfo">
+            <h2>Misplaced word :</h2>
+            <div class="yellowBox infoBox"></div>
+        </div>
+        <div class="boxInfo">
+            <h2>Incorrect word :</h2>
+            <div class="redBox infoBox"></div>
+        </div>
+
+        <div id="infoDesc">
+            <h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </h3>
+        </div>
+    </div>
+</body>
+<script>
+    //to pass id from info page to highscore page so user can check their rank
+    const highscorePage = document.querySelector(".highscorePage");
+    highscorePage.style.cursor = "pointer";
+    const wordLength = 3;
+    const wordType = "all";
+
+    const id = localStorage.getItem("userId");
+    highscorePage.addEventListener("click", () => {
+        window.location.href = `/highscores/sorted?id=${id}&wordLength=${wordLength}&type=${wordType}`;
+    });
+</script>
+
+</html>

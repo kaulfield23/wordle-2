@@ -15,17 +15,8 @@ selectLength.addEventListener("change", (e) => {
 
 selectType.addEventListener("change", (e) => {
     wordType = e.target.value;
-    console.log(id)
 });
 
 sortButton.addEventListener("click", (event) => {
     window.location.href = `/highscores/sorted?id=${id}&wordLength=${wordLength}&type=${wordType}`
 });
-
-
-
-const callApi = async() => {
-    await fetch(
-        `/highscores/sorted2?id=${id}&wordLength=${wordLength}&type=${wordType}`
-    );
-};

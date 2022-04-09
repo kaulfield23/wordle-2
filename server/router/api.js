@@ -8,14 +8,7 @@ import verifyWord from "../wordle/verifyWord.js";
 import {
     Highscore
 } from "../db.js"
-import {
-    highscoreElem
-} from "../wordle/highscoreElem.js";
 
-import {
-    sortAll,
-    sortTopTen
-} from "../wordle/sortFunc.js";
 
 const router = express.Router();
 
