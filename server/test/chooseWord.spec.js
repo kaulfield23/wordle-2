@@ -1,4 +1,4 @@
-import chooseWord from "../functions/chooseWord.js";
+import chooseWord from "../wordle/chooseWord.js";
 
 describe("choose word from word list", () => {
     it("should return the word that the length is same as numberOfWord", () => {

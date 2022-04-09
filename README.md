@@ -2,6 +2,8 @@
 
 ## 2. Npm install in client folder
 
-## 3. 'Npm start' in root folder to start both client and server.
+## 3. 'npm run build' in client folder
+
+## 4. 'npm start' in root folder
 
 ## 'Npm test' in root folder for testing

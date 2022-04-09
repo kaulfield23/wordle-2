@@ -1,4 +1,4 @@
-import verifyWord from "../functions/verifyWord.js";
+import verifyWord from "../wordle/verifyWord.js";
 
 describe("wordle algoritm", () => {
     it("should return correct on first try", () => {
