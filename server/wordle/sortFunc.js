@@ -9,9 +9,11 @@ export const sortAll = (scores, playerId, wordLength, wordType) => {
             return item.wordLength === wordLength && item.wordType == wordType
         }
     });
+
     const userRank = filtered.findIndex((item) => item.userId === playerId)
+    let topTen = filtered.splice(0, 10)
     return {
-        scores: filtered,
+        scores: topTen,
         userRank: userRank
     }
 }
