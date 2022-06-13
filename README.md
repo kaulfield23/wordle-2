@@ -1,4 +1,4 @@
-## 1. .env ub root folder
+## 1. .env in root folder
 `DB_URL = mongoDB url`
 
 ## 2. Npm install in root folder
