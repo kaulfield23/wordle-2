@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
+import 'dotenv/config';
 
-const url = `mongodb+srv://haeju23:i0fHeXduUREiarhz@cluster0.yjrpv.mongodb.net/wordle?retryWrites=true&w=majority`
+const url = process.env.DB_URL;
+
 
 mongoose.connect(
     url,

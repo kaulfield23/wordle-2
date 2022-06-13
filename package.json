@@ -6,6 +6,7 @@
     "type": "module",
     "dependencies": {
         "concurrently": "^7.0.0",
+        "dotenv": "^16.0.1",
         "express": "^4.17.3",
         "express-handlebars": "^6.0.3",
         "mongoose": "^6.2.8",
