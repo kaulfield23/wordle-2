@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Typography,
   Box,
@@ -11,12 +11,12 @@ import {
   FormControlLabel,
   FormLabel,
   Button,
-} from "@mui/material";
-import { CustomText, CenterHorizon } from "../UI/customMUI/CustomMUI";
+} from '@mui/material';
+import { CustomText, CenterHorizon } from '../UI/customMUI/CustomMUI';
 
 const ConfigureGame = (props) => {
-  const [wordLimit, setWordLimit] = useState("");
-  const [wordType, setWordType] = useState("repeating");
+  const [wordLimit, setWordLimit] = useState('');
+  const [wordType, setWordType] = useState('repeating');
 
   const onChangeWordLimit = (e) => {
     setWordLimit(e.target.value);
@@ -29,29 +29,35 @@ const ConfigureGame = (props) => {
   const checkValues = (e) => {
     if (!wordLimit) {
       e.preventDefault();
-      return alert("Set the word limit for playing!");
+      return alert('Set the word limit for playing!');
     }
     props.wordType({ limit: wordLimit, type: wordType });
   };
+
+  const gameType = [
+    { value: 'repeating', label: 'Repeating characters (e.g.HELLO)' },
+    { value: 'unique', label: 'Unique characters only (e.g.CURLY)' },
+  ];
+
   return (
     <>
       <Typography
         sx={{
-          fontSize: "25px",
-          margin: "50px auto 70px auto",
-          fontWeight: "bold",
-          color: "#65c2a6",
-          fontFamily: "nunito",
-          textAlign: "center",
+          fontSize: '25px',
+          margin: '50px auto 70px auto',
+          fontWeight: 'bold',
+          color: '#65c2a6',
+          fontFamily: 'nunito',
+          textAlign: 'center',
         }}
       >
         Wordle Game
       </Typography>
       <Typography
         sx={{
-          fontSize: "20px",
-          textAlign: "center",
-          color: "#6d4c41",
+          fontSize: '20px',
+          textAlign: 'center',
+          color: '#6d4c41',
         }}
       >
         🧁Configure game
@@ -59,8 +65,8 @@ const ConfigureGame = (props) => {
       <Box
         sx={{
           minWidth: 300,
-          m: "20px auto 100px auto",
-          width: "200px",
+          m: '20px auto 100px auto',
+          width: '200px',
         }}
       >
         <FormControl fullWidth>
@@ -72,18 +78,21 @@ const ConfigureGame = (props) => {
             label="How many letters?"
             onChange={onChangeWordLimit}
           >
-            <MenuItem value={4}>Play with 4-letter words</MenuItem>
-            <MenuItem value={5}>Play with 5-letter words</MenuItem>
-            <MenuItem value={6}>Play with 6-letter words</MenuItem>
+            {[4, 5, 6].map((num) => (
+              <MenuItem
+                value={num}
+                key={`Menu-${num}`}
+              >{`Play with ${num}-letter words`}</MenuItem>
+            ))}
           </Select>
         </FormControl>
       </Box>
       <CenterHorizon
         sx={{
-          marginBottom: "20px",
+          marginBottom: '20px',
         }}
       >
-        <FormControl sx={{ textAlign: "center" }}>
+        <FormControl sx={{ textAlign: 'center' }}>
           <FormLabel sx={{ m: 2 }} id="wordType">
             Word type
           </FormLabel>
@@ -93,25 +102,22 @@ const ConfigureGame = (props) => {
             onChange={onChangeWordType}
             name="repeating"
           >
-            <FormControlLabel
-              sx={{ m: 1 }}
-              value="repeating"
-              control={<Radio color="secondary" />}
-              label="Repeating characters (e.g.HELLO)"
-            />
-            <FormControlLabel
-              sx={{ m: 1 }}
-              value="unique"
-              control={<Radio color="secondary" />}
-              label="Unique characters only (e.g.CURLY)"
-            />
+            {gameType.map((item) => (
+              <FormControlLabel
+                key={item.value}
+                sx={{ m: 1 }}
+                value={item.value}
+                control={<Radio color="secondary" />}
+                label={item.label}
+              />
+            ))}
           </RadioGroup>
         </FormControl>
       </CenterHorizon>
 
       <CenterHorizon
         sx={{
-          paddingBottom: "30px",
+          paddingBottom: '30px',
         }}
       >
         <Button variant="contained" onClick={checkValues}>
